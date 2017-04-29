@@ -22,7 +22,7 @@
                                         <span>{{game.fan}} {{'fan'|translate}}</span>
                                     </h2>
                                 </md-toolbar>
-                                <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
+                                <section layout="row" layout-align="center center" layout-wrap>
 
                                     <md-switch ng-model="game.isSelf" aria-label="Switch 1">
                                         {{'selfwin' | translate}}: {{ game.isSelf | translate}} </md-switch>
@@ -44,7 +44,7 @@
                                         <span>{{'winner' | translate}} : {{players[game.winner]}}</span>
                                     </h2>
                                 </md-toolbar>
-                                <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
+                                <section layout="row"  layout-align="center center" layout-wrap>
 
 
                                         <md-button md-no-ink class="md-raised "
@@ -58,7 +58,7 @@
                                         <span>{{'loser' | translate}}: : {{players[game.loser]}}</span>
                                     </h2>
                                 </md-toolbar>
-    <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
+                            <section layout="row"  layout-align="center center" layout-wrap>
 
 
                                         <md-button md-no-ink class="md-raised "
@@ -68,7 +68,7 @@
                                         > {{p}}</md-button>
 
 
-    </section>
+                            </section>
 
                             </form>
                             <md-button class="md-raised md-primary" ng-click="addGame();">OK</md-button>
