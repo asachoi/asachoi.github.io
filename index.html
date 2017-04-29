@@ -28,9 +28,13 @@
                                         {{'selfwin' | translate}}: {{ game.isSelf | translate}} </md-switch>
 
                                        <!-- Colored FAB button -->
-                                        <md-button md-no-ink class="md-raised"
+                                        <md-button md-no-ink
+                                                   class="md-raised
+                                                    {{check(game.fan==n)}}
+                                                    "
                                                    ng-repeat="n in [3,4,5,6,7,8,9,10]"
                                                    ng-click="game.fan=n"
+
                                         >{{n}}
                                         </md-button>
 
@@ -47,10 +51,14 @@
                                 <section layout="row"  layout-align="center center" layout-wrap>
 
 
-                                        <md-button md-no-ink class="md-raised "
+                                        <md-button md-no-ink class="md-raised {{check(game.winner==$index)}}"
                                                    ng-repeat="p in players track by $index"
                                                    ng-click="game.winner=$index"
-                                        > {{p}}</md-button>
+
+
+                                        >
+                                            {{p}}
+                                        </md-button>
 
                                 </section>
                                 <md-toolbar class="md-theme-light">
@@ -61,7 +69,7 @@
                             <section layout="row"  layout-align="center center" layout-wrap>
 
 
-                                        <md-button md-no-ink class="md-raised "
+                                        <md-button md-no-ink class="md-raised {{check(game.loser==$index)}}"
                                                    ng-repeat="p in players track by $index"
                                                    ng-click="game.loser=$index"
                                                    ng-if="$index!=game.winner"
@@ -133,6 +141,13 @@
             $scope.games = [];
             $scope.total = [0,0,0,0,0];
             $scope.minfan = 3;
+            $scope.check = function(i)
+            {
+                if(i) {
+                    return 'md-accent';
+                }
+                return ''
+            }
 
             $scope.game = {
                 winner:-1,
@@ -160,7 +175,7 @@
                  $scope.games.pop();
                 $scope.reset();
                 $scope.updateChart();
-             
+
             }
 
             $scope.addGame = function() {
@@ -276,6 +291,9 @@
     </script>
 </body>
 <style>
+    .clicked {
+        color:RED;
+    }
 
 </style>
 
