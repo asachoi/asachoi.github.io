@@ -72,6 +72,8 @@
 
                             </form>
                             <md-button class="md-raised md-primary" ng-click="addGame();">OK</md-button>
+                            <md-button class="md-raised " ng-click="resetGame();">Reset</md-button>
+
                         </md-card-content>
                     </md-card>
                 </md-tab>
@@ -139,19 +141,25 @@
                 isSelf:false
             };
 
+            $scope.reset= function() {
+                    $scope.game = {
+                        winner:-1,
+                        loser:-1,
+                        fan:0,
+                        isSelf:false
+                    };
+            }
+
             $scope.getpay = function() {
                 var game = $scope.game;
 
                 return $scope.fanpays[game.fan-1] / (game.isSelf ? 2:1);
             }
 
-            $scope.reset = function() {
-            $scope.game = {
-                winner:-1,
-                loser:-1,
-                fan:0,
-                isSelf:false
-                };          
+            $scope.resetGame = function() {
+                 $scope.games.pop();
+                 $scope.reset();
+                 alert('OK');
             }
 
             $scope.addGame = function() {
@@ -184,6 +192,7 @@
                 $scope.games.push(thisgame);
                 $scope.reset();
                 $scope.updateChart();
+
                 
             }
 
