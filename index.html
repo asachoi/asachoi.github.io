@@ -158,8 +158,9 @@
 
             $scope.resetGame = function() {
                  $scope.games.pop();
-                 $scope.reset();
-                 alert('OK');
+                $scope.reset();
+                $scope.updateChart();
+             
             }
 
             $scope.addGame = function() {
