@@ -1,1 +1,259 @@
-"hello" 
+<html lang="en">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <!-- Angular Material style sheet -->
+    <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css"> </head>
+<script>
+
+</script>
+
+<body ng-cloak ng-controller="myCtrl">
+    <div ng-cloak>
+        <md-content>
+            <md-tabs md-dynamic-height md-border-bottom>
+                <md-tab label="{{'game' | translate}}">
+                    <md-card>
+                        <md-card-content>
+                            <form name="myform">
+                                <div layout="row">
+                                    <div flex="20">
+                                        <p>{{game.fan}} {{'fan'|translate}}</p>
+                                        <md-slider required ng-model="game.fan" min="{{minfan}}"
+                                            max="10" aria-label="volume" id="volume-slider" class="md-accent" md-vertical md-range></md-slider>
+                                    </div>
+                                    <div flex="40">
+                                        <md-switch ng-model="game.isSelf" aria-label="Switch 1"> {{'selfwin' | translate}}: {{ game.isSelf | translate}} </md-switch> {{'amount' |
+                                        translate}}: {{ getpay() }} </div>
+                                    <div flex="20">
+                                        <p>{{'winner' | translate}}</p>
+                                        <md-radio-group ng-model="game.winner" required>
+                                            <md-radio-button ng-value="$index" ng-repeat="p in players track by $index">{{p}}</md-radio-button>
+                                        </md-radio-group>
+                                    </div>
+                                    <div flex="20" ng-if="!game.isSelf">
+                                        <p>{{'loser' | translate}}</p>
+                                        <md-radio-group ng-model="game.loser" required>
+                                            <md-radio-button ng-value="$index" ng-repeat="p in players track by $index" ng-if="$index!=game.winner">{{p}}</md-radio-button>
+                                        </md-radio-group>
+                                    </div>
+                                </div>
+                            </form>
+                            <md-button class="md-primary blue" ng-click="addGame();">OK</md-button>
+                        </md-card-content>
+                    </md-card>
+                </md-tab>
+                <md-tab label="{{'result' | translate}}">
+                    <md-card>
+                        <md-card-content>
+                            <div layout="row" style="border:1px;">
+                                <div flex=20> {{'player' | translate}}</div>
+                                <div ng-repeat="n in players" flex=20 class="num"> {{n}} </div>
+                            </div>
+                            <div layout="row" ng-repeat="item in games">
+                                <div flex=20> {{item[n] + 1 | translate}}</div>
+                                <div ng-repeat="n in [1,2,3,4]" flex=20 class="num"> {{item[n]}} </div>
+                            </div>
+                            <div layout="row">
+                                <div flex=20> total</div>
+                                <div ng-repeat="n in [1,2,3,4]" flex=20 class="num"> {{total[n]}} </div>
+                            </div>
+                        </md-card-content>
+                    </md-card>
+                </md-tab>
+                <md-tab label="{{'setting' | translate}}">
+                    <md-card>
+                        <md-card-content>
+                            <div class="row">
+                                <h2>{{'player' | translate}}</h2>
+                                <md-input-container ng-repeat="p in players track by $index" flex=25> <label>{{'player' | translate}} {{$index + 1}}</label> <input ng-model="players[$index]">                                    </md-input-container>
+                            </div>
+                            <div class="row">
+                                <h2>{{'fan' | translate}}</h2>
+                                <md-input-container ng-repeat="p in fanpays track by $index" flex=20> <label> {{$index + 1}} {{'fan' | translate}}</label> <input ng-model="fanpays[$index]"> </md-input-container>
+                            </div>
+                            <div class="row"> <span>{{'minfan' | translate}} : {{minfan}}</span>
+                                <md-slider required ng-model="minfan" min="1"
+                                    max="5" md-range></md-slider>
+                            </div>
+                        </md-card-content>
+                    </md-card>
+                </md-tab>
+            </md-tabs>
+        </md-content>
+        <div id="chartdiv" name="chartdiv"></div>
+    </div>
+    <!-- Angular Material requires Angular.js Libraries -->
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
+    <!-- Angular Material Library -->
+    <script src="http://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
+    <script type="text/javascript">
+        angular.module('BlankApp', ['ngMaterial','pascalprecht.translate'])
+        .controller('myCtrl', function($scope) {
+
+            $scope.players = ['a','b','c','d'];
+            $scope.fanpays = [4,8,16,32,48,64,96,128,192,256];
+            $scope.games = [];
+            $scope.total = [0,0,0,0,0];
+            $scope.minfan = 3;
+
+            $scope.game = {
+                winner:-1,
+                loser:-1,
+                fan:0,
+                isSelf:false
+            };
+
+            $scope.getpay = function() {
+                var game = $scope.game;
+
+                return $scope.fanpays[game.fan-1] / (game.isSelf ? 2:1);
+            }
+
+            $scope.reset = function() {
+            $scope.game = {
+                winner:-1,
+                loser:-1,
+                fan:0,
+                isSelf:false
+                };          
+            }
+
+            $scope.addGame = function() {
+                var thisgame = [0,0,0,0];
+                var pay = $scope.getpay();
+
+                if($scope.game.winner==-1) 
+                {
+                    return 0;
+                }
+                if(!$scope.game.isSelf && $scope.game.loser == -1) 
+                {
+                    return 0;
+                }
+                if($scope.game.fan  == 0) 
+                {
+                    return 0;
+                }
+                if($scope.game.isSelf) {
+                    thisgame.forEach(function(x,y) {
+                        thisgame[y] = -1 * pay; 
+                    });
+                    thisgame[$scope.game.winner] = 3 * pay;
+                }
+                else {
+                    thisgame[$scope.game.winner] = pay;
+                    thisgame[$scope.game.loser] = -1 * pay;
+                }
+                thisgame.splice(0, 0, $scope.games.length);
+                $scope.games.push(thisgame);
+                $scope.reset();
+                $scope.updateChart();
+                
+            }
+
+            $scope.updateChart = function() {
+                 
+                var players = $scope.players.slice(0);
+                players.splice(0,0,'player');
+
+                var arr = [];
+                arr.push(players);//,[0,-24,-24,72,-24],[1,96,0,0,-96]];
+                var total = [0,0,0,0,0];
+                for(var i =0; i < $scope.games.length; i++ ) {
+                    var g = $scope.games[i];
+                    g.forEach(
+                        function(item, index) {
+                            total[index] += item;
+                        }
+                        
+                    );
+                    total[0] = g[0];
+                    arr.push(total.slice(0));
+
+                    $scope.total = total.slice(0)
+                }
+                
+                var data = google.visualization.arrayToDataTable(arr);
+                var options = {
+                    title: 'Performance'
+                };
+                
+        
+                var chart = new google.visualization.LineChart(document.getElementById('chartdiv'));
+
+                chart.draw(data, options);
+            }
+
+        }).config(function($mdThemingProvider) {
+            $mdThemingProvider.theme('default')
+                
+                .accentPalette('red');
+        }).config(['$translateProvider', function ($translateProvider) {
+            $translateProvider.translations('en', {
+                'game': '贏輸',
+                'fan': '番',
+                'selfwin': '自摸',
+                'winner':'贏家',
+                'loser':'輸家',
+                'result':'結果',
+                'setting':'設定',
+                'player':'玩家',
+                'amount':'合計',
+                'true': '是',
+                'false': '否'
+
+            });
+            
+            $translateProvider.translations('de', {
+                'TITLE': 'Hallo',
+                'FOO': 'Dies ist ein Absatz'
+            });
+            
+            $translateProvider.preferredLanguage('en');
+            }]);
+    </script>
+    <script type="text/javascript" src="https://www.google.com/jsapi">
+         
+    </script>
+    <script src="js/angular-translate.min.js"></script>
+    <script>
+        google.load('visualization', '1', {packages:['corechart']});
+    google.setOnLoadCallback(function() {
+         
+        angular.bootstrap(document.body, ['BlankApp']);
+    });
+    </script>
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+    <script type="text/javascript">
+        app.initialize();
+    </script>
+</body>
+<style>
+    .md-button {
+        padding: 0 6px 0 6px;
+        margin: 6px 8px 6px 8px;
+        min-width: 88px;
+        border-radius: 3px;
+        font-size: 14px;
+        text-align: center;
+        text-transform: uppercase;
+        text-decoration: none;
+        border: none;
+        outline: none;
+        background: seagreen;
+    }
+    
+    .num {
+        text-align: right;
+        border-color: gray;
+        border-style: inset;
+    }
+</style>
+
+</html>
