@@ -292,6 +292,8 @@
     <script type="text/javascript">
         app.initialize();
 
+        alert(window.DeviceOrientationEvent)
+
         if(window.DeviceOrientationEvent) {
             window.addEventListener('deviceorientation', function(event) {
           var a = document.getElementById('alpha',
