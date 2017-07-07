@@ -1,323 +1,121 @@
-﻿<html lang="en">
-
+﻿
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta charset="UTF-8">
-    <!-- Angular Material style sheet -->
-    <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css"> </head>
-<script>
-
-</script>
-
-<body ng-cloak ng-controller="myCtrl">
-    <div ng-cloak>
-        <md-content>
-            <md-tabs md-dynamic-height md-border-bottom>
-                <md-tab label="{{'game' | translate}}">
-                    <md-card>
-                        <md-card-content>
-                            <form name="myform">
-                                <md-toolbar class="md-theme-light red">
-                                    <h2 class="md-toolbar-tools">
-                                        <span>{{game.fan}} {{'fan'|translate}}</span>
-                                    </h2>
-                                </md-toolbar>
-                                <section layout="row" layout-align="center center" layout-wrap>
-
-                                    <md-switch ng-model="game.isSelf" aria-label="Switch 1">
-                                        {{'selfwin' | translate}}: {{ game.isSelf | translate}} </md-switch>
-
-                                       <!-- Colored FAB button -->
-                                        <md-button md-no-ink
-                                                   class="md-raised
-                                                    {{check(game.fan==n)}}
-                                                    "
-                                                   ng-repeat="n in [3,4,5,6,7,8,9,10]"
-                                                   ng-click="game.fan=n"
-
-                                        >{{n}}
-                                        </md-button>
-
-
-                                    {{'amount' |
-                                    translate}}: {{ getpay() }}
-
-                                </section>
-                                <md-toolbar class="md-theme-light">
-                                    <h2 class="md-toolbar-tools">
-                                        <span>{{'winner' | translate}} : {{players[game.winner]}}</span>
-                                    </h2>
-                                </md-toolbar>
-                                <section layout="row"  layout-align="center center" layout-wrap>
-
-
-                                        <md-button md-no-ink class="md-raised {{check(game.winner==$index)}}"
-                                                   ng-repeat="p in players track by $index"
-                                                   ng-click="game.winner=$index"
-
-
-                                        >
-                                            {{p}}
-                                        </md-button>
-
-                                </section>
-                                <md-toolbar class="md-theme-light">
-                                    <h2 class="md-toolbar-tools">
-                                        <span>{{'loser' | translate}}: : {{players[game.loser]}}</span>
-                                    </h2>
-                                </md-toolbar>
-                            <section layout="row"  layout-align="center center" layout-wrap>
-
-
-                                        <md-button md-no-ink class="md-raised {{check(game.loser==$index)}}"
-                                                   ng-repeat="p in players track by $index"
-                                                   ng-click="game.loser=$index"
-                                                   ng-if="$index!=game.winner"
-                                        > {{p}}</md-button>
-
-
-                            </section>
-
-                            </form>
-                            <md-button class="md-raised md-primary" ng-click="addGame();">OK</md-button>
-                            <md-button class="md-raised " ng-click="resetGame();">Reset</md-button>
-
-                        </md-card-content>
-                    </md-card>
-                </md-tab>
-                <md-tab label="{{'result' | translate}}">
-                    <md-card>
-                        <md-card-content>
-                            <div layout="row" style="border:1px;">
-                                <div flex=20> {{'player' | translate}}</div>
-                                <div ng-repeat="n in players" flex=20 class="num"> {{n}} </div>
-                            </div>
-                            <div layout="row" ng-repeat="item in games">
-                                <div flex=20> {{item[n] + 1 | translate}}</div>
-                                <div ng-repeat="n in [1,2,3,4]" flex=20 class="num"> {{item[n]}} </div>
-                            </div>
-                            <div layout="row">
-                                <div flex=20> total</div>
-                                <div ng-repeat="n in [1,2,3,4]" flex=20 class="num"> {{total[n]}} </div>
-                            </div>
-                        </md-card-content>
-                    </md-card>
-                </md-tab>
-                <md-tab label="{{'setting' | translate}}">
-                    <md-card>
-                        <md-card-content>
-                            <div class="row">
-                                <h2>{{'player' | translate}}</h2>
-                                <md-input-container ng-repeat="p in players track by $index" flex=25> <label>{{'player' | translate}} {{$index + 1}}</label> <input ng-model="players[$index]">                                    </md-input-container>
-                            </div>
-                            <div class="row">
-                                <h2>{{'fan' | translate}}</h2>
-                                <md-input-container ng-repeat="p in fanpays track by $index" flex=20> <label> {{$index + 1}} {{'fan' | translate}}</label> <input ng-model="fanpays[$index]"> </md-input-container>
-                            </div>
-                            <div class="row"> <span>{{'minfan' | translate}} : {{minfan}}</span>
-                                <md-slider required ng-model="minfan" min="1"
-                                    max="5" md-range></md-slider>
-                            </div>
-                        </md-card-content>
-                    </md-card>
-                </md-tab>
-            </md-tabs>
-        </md-content>
-        alpha:<span id="alpha"></span><br/>
-        beta:<span id="beta"></span><br/>
-        gamma:<span id="gamma"></span><br/>
-        <div id="chartdiv" name="chartdiv"></div>
+    <meta name="author" content="oxxo.studio">
+    <meta name="copyright" content="oxxo.studio">
+    <meta name=viewport content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>HTML5 控制裝置陀螺儀 ( 三軸 ) - demo2</title>
+    <style>
+		.camera{
+			margin:20% auto;
+			width:200px;
+			height:200px;
+			perspective-origin:50% 50%;
+			-moz-perspective-origin:50% 50%;
+			-webkit-perspective-origin:50% 50%;
+			perspective:500px;
+			-moz-perspective:500px;
+			-webkit-perspective:500px;
+		}
+		.space{
+			position:relative;
+			width:100%;
+			height:100%;
+			transform-style:preserve-3d;
+			-moz-transform-style:preserve-3d;
+			-webkit-transform-style:preserve-3d;
+			transform-origin:center center -50px;
+			-moz-transform-origin:center center -50px;
+			-webkit-transform-origin:center center -50px;
+		}
+		.space div{
+			position:absolute;
+			width:100px;
+			height:100px;
+			font-size:50px;
+			text-align:center;
+			line-height:100px;
+		}
+		.box1{
+			background:rgba(255,0,0,.2);
+			transform:translateX(50px) translateY(50px);
+			-moz-transform:translateX(50px) translateY(50px);
+			-webkit-transform:translateX(50px) translateY(50px);
+		}
+		.box2{
+			background:rgba(255,255,0,.2);
+			transform-origin:left top;
+			-moz-transform-origin:left top;
+			-webkit-transform-origin:left top;
+			transform:translateX(150px) translateY(50px) rotateY(90deg);
+			-moz-transform:translateX(150px) translateY(50px) rotateY(90deg);
+			-webkit-transform:translateX(150px) translateY(50px) rotateY(90deg);
+		}
+		.box3{
+			background:rgba(0,255,0,.2);
+			transform:translateX(50px) translateY(50px) translateZ(-100px) rotateY(180deg);
+			-moz-transform:translateX(50px) translateY(50px) translateZ(-100px) rotateY(180deg);
+			-webkit-transform:translateX(50px) translateY(50px) translateZ(-100px) rotateY(180deg);
+		}
+		.box4{
+			background:rgba(255,0,255,.2);
+			transform-origin:right top;
+			-moz-transform-origin:right top;
+			-webkit-transform-origin:right top;
+			transform:translateX(-50px) translateY(50px) rotateY(-90deg);
+			-moz-transform:translateX(-50px) translateY(50px) rotateY(-90deg);
+			-webkit-transform:translateX(-50px) translateY(50px) rotateY(-90deg);
+		}
+		.box5{
+			background:rgba(0,0,255,.2);
+			transform-origin:center bottom;
+			-moz-transform-origin:center bottom;
+			-webkit-transform-origin:center bottom;
+			transform:translateX(50px) translateY(-50px) rotateX(90deg);
+			-moz-transform:translateX(50px) translateY(-50px) rotateX(90deg);
+			-webkit-transform:translateX(50px) translateY(-50px) rotateX(90deg);
+		}
+		.box6{
+			background:rgba(0,255,255,.2);
+			transform-origin:center top;
+			-moz-transform-origin:center top;
+			-webkit-transform-origin:center top;
+			transform:translateX(50px) translateY(150px) rotateX(-90deg);
+			-moz-transform:translateX(50px) translateY(150px) rotateX(-90deg);
+			-webkit-transform:translateX(50px) translateY(150px) rotateX(-90deg);
+		}
+	</style>
+</head>
+<body>
+<div class="camera">
+    <div class="space">
+        <div class="box1">1</div>
+        <div class="box2">2</div>
+        <div class="box3">3</div>
+        <div class="box4">4</div>
+        <div class="box5">5</div>
+        <div class="box6">6</div>
     </div>
-    <!-- Angular Material requires Angular.js Libraries -->
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular.min.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-animate.min.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-aria.min.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.5/angular-messages.min.js"></script>
-    <!-- Angular Material Library -->
-    <script src="//ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.js"></script>
-    <script type="text/javascript">
-        angular.module('BlankApp', ['ngMaterial','pascalprecht.translate'])
-        .controller('myCtrl', function($scope) {
+</div>
+<script>
+	var space = document.querySelectorAll('.space');
+	if(window.DeviceOrientationEvent) {
 
-            $scope.players = ['a','b','c','d'];
-            $scope.fanpays = [4,8,16,32,48,64,96,128,192,256];
-            $scope.games = [];
-            $scope.total = [0,0,0,0,0];
-            $scope.minfan = 3;
-            $scope.check = function(i)
-            {
-                if(i) {
-                    return 'md-accent';
-                }
-                return ''
-            }
+	  window.addEventListener('deviceorientation', function(event) {
+      var alpha = event.alpha,
+      	beta = event.beta,
+		 gamma = event.gamma;
 
-            $scope.game = {
-                winner:-1,
-                loser:-1,
-                fan:0,
-                isSelf:false
-            };
+        space[0].style.webkitTransform = 'rotateX('+beta+'deg) rotateY('+gamma+'deg) rotateZ('+alpha+'deg)';
+        space[0].style.transform = 'rotateX('+beta+'deg) rotateY('+gamma+'deg) rotateZ('+alpha+'deg)';
+        space[0].style.mozTransform = 'rotateX('+beta+'deg) rotateY('+gamma+'deg) rotateZ('+alpha+'deg)';
 
-            $scope.reset= function() {
-                    $scope.game = {
-                        winner:-1,
-                        loser:-1,
-                        fan:0,
-                        isSelf:false
-                    };
-            }
-
-            $scope.getpay = function() {
-                var game = $scope.game;
-
-                return $scope.fanpays[game.fan-1] / (game.isSelf ? 2:1);
-            }
-
-            $scope.resetGame = function() {
-                 $scope.games.pop();
-                $scope.reset();
-                $scope.updateChart();
-
-            }
-
-            $scope.addGame = function() {
-                var thisgame = [0,0,0,0];
-                var pay = $scope.getpay();
-
-                if($scope.game.winner==-1) 
-                {
-                    return 0;
-                }
-                if(!$scope.game.isSelf && $scope.game.loser == -1) 
-                {
-                    return 0;
-                }
-                if($scope.game.fan  == 0) 
-                {
-                    return 0;
-                }
-                if($scope.game.isSelf) {
-                    thisgame.forEach(function(x,y) {
-                        thisgame[y] = -1 * pay; 
-                    });
-                    thisgame[$scope.game.winner] = 3 * pay;
-                }
-                else {
-                    thisgame[$scope.game.winner] = pay;
-                    thisgame[$scope.game.loser] = -1 * pay;
-                }
-                thisgame.splice(0, 0, $scope.games.length);
-                $scope.games.push(thisgame);
-                $scope.reset();
-                $scope.updateChart();
-
-                
-            }
-
-            $scope.updateChart = function() {
-                 
-                var players = $scope.players.slice(0);
-                players.splice(0,0,'player');
-
-                var arr = [];
-                arr.push(players);//,[0,-24,-24,72,-24],[1,96,0,0,-96]];
-                var total = [0,0,0,0,0];
-                for(var i =0; i < $scope.games.length; i++ ) {
-                    var g = $scope.games[i];
-                    g.forEach(
-                        function(item, index) {
-                            total[index] += item;
-                        }
-                        
-                    );
-                    total[0] = g[0];
-                    arr.push(total.slice(0));
-
-                    $scope.total = total.slice(0)
-                }
-                
-                var data = google.visualization.arrayToDataTable(arr);
-                var options = {
-                    title: 'Performance'
-                };
-                
-        
-                var chart = new google.visualization.LineChart(document.getElementById('chartdiv'));
-
-                chart.draw(data, options);
-            }
-
-        }).config(function($mdThemingProvider) {
-            $mdThemingProvider.theme('default')
-                
-                .accentPalette('red');
-        }).config(['$translateProvider', function ($translateProvider) {
-            $translateProvider.translations('en', {
-                'game': '贏輸',
-                'fan': '番',
-                'selfwin': '自摸',
-                'winner':'贏家',
-                'loser':'輸家',
-                'result':'結果',
-                'setting':'設定',
-                'player':'玩家',
-                'amount':'合計',
-                'true': '是',
-                'false': '否'
-
-            });
-            
-            $translateProvider.translations('de', {
-                'TITLE': 'Hallo',
-                'FOO': 'Dies ist ein Absatz'
-            });
-            
-            $translateProvider.preferredLanguage('en');
-            }]);
-    </script>
-    <script type="text/javascript" src="https://www.google.com/jsapi">
-         
-    </script>
-    <script src="js/angular-translate.min.js"></script>
-    <script>
-        google.load('visualization', '1', {packages:['corechart']});
-    google.setOnLoadCallback(function() {
-         
-        angular.bootstrap(document.body, ['BlankApp']);
-    });
-    </script>
-    <script type="text/javascript" src="cordova.js"></script>
-    <script type="text/javascript" src="js/index.js"></script>
-    <script type="text/javascript">
-        app.initialize();
-
-        alert(window.DeviceOrientationEvent)
-
-        if(window.DeviceOrientationEvent) {
-            window.addEventListener('deviceorientation', function(event) {
-          var a = document.getElementById('alpha',
-                  b = document.getElementById('beta'),
-                  g = document.getElementById('gamma'),
-                  alpha = event.alpha,
-                  beta = event.beta,
-                      gamma = event.gamma;
-
-          a.innerHTML = Math.round(alpha);
-          b.innerHTML = Math.round(beta);
-          g.innerHTML = Math.round(gamma);
-
-            }, false);
-        }else{
-            document.querySelector('body').innerHTML = '你的瀏覽器不支援喔';
-        }
-    </script>
+	      }, false);
+	}else{
+	  document.querySelector('body').innerHTML = '你的瀏覽器不支援喔';
+	}
+	</script>
 </body>
-<style>
-    .clicked {
-        color:RED;
-    }
-
-</style>
-
 </html>
