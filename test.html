@@ -147,17 +147,26 @@
 </div>
 <script>
 	var space = document.querySelectorAll('.space');
+      var alpha = 0,
+      	beta = 0,
+		 gamma = 0;
+
 	var delta = 0;
 
-	setTimeout(function(){ delta = delta + 1 }, 500);
+	setTimeout(function(){
+	    delta = delta + 1
+            space[0].style.webkitTransform = 'rotateX('+beta + delta+'deg) rotateY('+gamma+'deg) rotateZ('+alpha+'deg)';
+            space[0].style.transform = 'rotateX('+beta + delta+'deg) rotateY('+gamma+'deg) rotateZ('+alpha+'deg)';
+            space[0].style.mozTransform = 'rotateX('+beta + delta+'deg) rotateY('+gamma+'deg) rotateZ('+alpha+'deg)';
+	}, 500);
 
 
 	if(window.DeviceOrientationEvent) {
 
 	  window.addEventListener('deviceorientation', function(event) {
-      var alpha = event.alpha,
-      	beta = event.beta,
-		 gamma = event.gamma;
+      alpha = event.alpha
+      beta = event.beta
+	  gamma = event.gamma
             space[0].style.webkitTransform = 'rotateX('+beta + delta+'deg) rotateY('+gamma+'deg) rotateZ('+alpha+'deg)';
             space[0].style.transform = 'rotateX('+beta + delta+'deg) rotateY('+gamma+'deg) rotateZ('+alpha+'deg)';
             space[0].style.mozTransform = 'rotateX('+beta + delta+'deg) rotateY('+gamma+'deg) rotateZ('+alpha+'deg)';
