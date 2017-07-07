@@ -141,7 +141,7 @@
         </svg></div>
     </div>
 </div>
-Speak now <button onclick="start()"></button>
+ <button onclick="start()">Speak now</button>
 <div id="show">
 
 </div>
@@ -182,6 +182,8 @@ Speak now <button onclick="start()"></button>
       var j = event.results[i].length-1;
       show.innerHTML = event.results[i][j].transcript;
     };
+
+
     function start() {
         recognition.start();
     }
