@@ -99,6 +99,7 @@
         <div class="box6">6</div>
     </div>
 </div>
+<button>Testing Shadow</button>
 <script>
 	var space = document.querySelectorAll('.space');
 	if(window.DeviceOrientationEvent) {
@@ -112,10 +113,15 @@
         space[0].style.transform = 'rotateX('+beta+'deg) rotateY('+gamma+'deg) rotateZ('+alpha+'deg)';
         space[0].style.mozTransform = 'rotateX('+beta+'deg) rotateY('+gamma+'deg) rotateZ('+alpha+'deg)';
 
+        $('button').css("box-shadow", alpha + 'px ' + alpha + 'px ');
 	      }, false);
 	}else{
 	  document.querySelector('body').innerHTML = '你的瀏覽器不支援喔';
 	}
 	</script>
+<script
+  src="https://code.jquery.com/jquery-2.2.4.min.js"
+  integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+  crossorigin="anonymous"></script>
 </body>
 </html>
