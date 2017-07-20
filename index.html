@@ -113,7 +113,9 @@
         space[0].style.transform = 'rotateX('+beta+'deg) rotateY('+gamma+'deg) rotateZ('+alpha+'deg)';
         space[0].style.mozTransform = 'rotateX('+beta+'deg) rotateY('+gamma+'deg) rotateZ('+alpha+'deg)';
 
-        $('button').css("box-shadow", alpha + 'px ' + alpha + 'px ');
+        var delta = 10 - alpha / 10
+
+        $('button').css("box-shadow", delta  + 'px ' + delta + 'px ');
 	      }, false);
 	}else{
 	  document.querySelector('body').innerHTML = '你的瀏覽器不支援喔';
