@@ -36,13 +36,13 @@
         beta = event.beta
         gamma = event.gamma
 
-        total = alpha + beta + gamma
+        //total = alpha + beta + gamma
 
 
         //      space[0].style.webkitTransform = 'rotateX('+beta + delta+'deg) rotateY('+gamma+'deg) rotateZ('+alpha+'deg)';
         //      space[0].style.transform = 'rotateX('+beta + delta+'deg) rotateY('+gamma+'deg) rotateZ('+alpha+'deg)';
         //      space[0].style.mozTransform = 'rotateX('+beta + delta+'deg) rotateY('+gamma+'deg) rotateZ('+alpha+'deg)';
-        update('#xval', total)
+        update('#xval', alpha)
       }, false);
    }else{
         document.querySelector('body').innerHTML = '你的瀏覽器不支援喔';
