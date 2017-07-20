@@ -20,9 +20,10 @@
 <body>
 <div class="camera">
     <button> Testing </button>
-  X<span id="xval"></span>
-  Y<span id="yval"></span>
-  Z<span id="zval"></span>
+  <br>
+  X<span id="xval"></span><br>
+  Y<span id="yval"></span><br>
+  Z<span id="zval"></span><br>
  </div>
 
 <script>
@@ -48,9 +49,9 @@
 
 
   var update = function(ctrl, obj) {
-    var d = 5 - obj.value /10
+    //var d = 5 - obj.value /10
     $(ctrl).text(obj.value);
-    $('button').css("box-shadow", d + 'px ' + d + 'px ');
+    //$('button').css("box-shadow", d + 'px ' + d + 'px ');
   }
 
 
