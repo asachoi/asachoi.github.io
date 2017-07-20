@@ -1,0 +1,62 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="oxxo.studio">
+    <meta name="copyright" content="oxxo.studio">
+    <meta name=viewport content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title> </title>
+    <style>
+
+    button {
+      width:200px;
+      box-shadow: 10px 10px grey;
+    }
+
+
+	</style>
+</head>
+<body>
+<div class="camera">
+    <button> Testing </button>
+    <input type=range id="x" onchange="update('#xval', this)"><span id="xval"></span>
+  <input type=range id="y" onchange="update('#yval', this)"><span id="yval"></span>
+  <input type=range id="z" onchange="update('#zval', this)"><span id="zval"></span>
+</div>
+
+<script>
+
+    if(window.DeviceOrientationEvent) {
+
+      window.addEventListener('deviceorientation', function(event) {
+        alpha = event.alpha
+        beta = event.beta
+        gamma = event.gamma
+              space[0].style.webkitTransform = 'rotateX('+beta + delta+'deg) rotateY('+gamma+'deg) rotateZ('+alpha+'deg)';
+              space[0].style.transform = 'rotateX('+beta + delta+'deg) rotateY('+gamma+'deg) rotateZ('+alpha+'deg)';
+              space[0].style.mozTransform = 'rotateX('+beta + delta+'deg) rotateY('+gamma+'deg) rotateZ('+alpha+'deg)';
+        update('', gamma)
+      }, false);
+   }else{
+        document.querySelector('body').innerHTML = '你的瀏覽器不支援喔';
+   }
+
+
+  var update = function(ctrl, obj) {
+
+    var d = 5 - obj.value /10
+    $(ctrl).text(obj.value);
+    $('button').css("box-shadow", d + 'px ' + d + 'px ');
+  }
+
+
+
+
+	</script>
+<script
+  src="https://code.jquery.com/jquery-2.2.4.min.js"
+  integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+  crossorigin="anonymous"></script>
+</body>
+</html>
