@@ -9,10 +9,29 @@ Loading time: {{loading}} ms
 <br>
 Parsing time: {{parsing}} ms
 <br>
+<div ng-repeat="n in state.baseQuestion">
+  <button>{{n.page}}</button>
+  {{n.text}}
+  <div ng-repeat="fs in n.filter">
+    <div ng-if="!isArray(fs.filterValue)">
+      <a href="">{{fs.filterValue}}</a>
+    </div>
+    <div ng-repeat="f in fs.filterValue" ng-if="isArray(fs.filterValue)">
+      <a href="">{{f}}</a>
+    </div>
+  </div>
+
+  <div ng-repeat="bq in n.baseQuestion">
+      {{bq.prompt}}
+  </div>
+</div>
+<br>
 Data:
 <pre>
   {{state | json}}
 </pre>
+
+
 
 
 <script src="bower_components/xml-to-json/json2xml.min.js"></script>
@@ -27,15 +46,19 @@ Data:
 
       var t0 = performance.now();
 
+      $scope.isArray = function(obj) {
+        return Array.isArray(obj)
+      }
+
 			$http.get('HK_EN_RULEBOOK_20170630_14150000.xml')
 			.then(
 				function(data) {
-					state.xml = (data.data)
+
  					 var t1 = performance.now();
  					 $scope.loading = (t1 - t0)
 					  //console.log("Call to doSomething took " + (t1 - t0) + " milliseconds.")
 
-				    jsonData = xml.xmlToJSON(state.xml);
+				    jsonData = xml.xmlToJSON(data.data);
 				    state.baseQuestion = jsonData.ruleset.baseQuestions.section
 				    state.categories = jsonData.ruleset.categories.category
 				    state.rules = jsonData.ruleset.rules.rule
@@ -45,7 +68,7 @@ Data:
 
 				    console.debug(state)
 
-				    $scope.state=state
+				    $scope.state = state
 
 				}
 			)
