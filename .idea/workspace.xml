@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f7f08bc0-35e4-440b-9eef-fdd485814374" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/vr.html" afterPath="$PROJECT_DIR$/vr.html" />
-    </list>
+    <list default="true" id="f7f08bc0-35e4-440b-9eef-fdd485814374" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -110,8 +108,8 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="389" />
-    <option name="y" value="297" />
+    <option name="x" value="393" />
+    <option name="y" value="298" />
     <option name="width" value="1382" />
     <option name="height" value="744" />
   </component>
@@ -397,7 +395,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="389" y="297" width="1382" height="744" extended-state="0" />
+    <frame x="393" y="298" width="1382" height="744" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />

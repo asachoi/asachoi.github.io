@@ -1,0 +1,128 @@
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="bower_components/c3/c3.min.css"></link>
+<style>
+  #cfrange {
+    position: absolute;
+    left: 0px;
+    top: 150px;
+    display:none
+}
+input[type=range] {
+  -webkit-appearance: none; /* Hides the slider so that custom slider can be made */
+  width: 100%; /* Specific width is required for Firefox. */
+  background: transparent; /* Otherwise white in Chrome */
+}
+
+/* Special styling for WebKit/Blink */
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  border: 1px solid #000000;
+  height: 36px;
+  width: 16px;
+  border-radius: 3px;
+  background: #222222;
+  cursor: pointer;
+  margin-top: -14px; /* You need to specify a margin in Chrome, but in Firefox and IE it is automatic */
+  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d; /* Add cool effects to your sliders! */
+}
+</style>
+</head>
+<body ng-app="myApp" ng-controller="personCtrl" ng-init="showGraph();cfshowGraph()">
+<h2>Account Value</h2>
+<div id="chart"></div>
+<h2>Cash flow</h2>
+<div id="cashflow"></div>
+<div id="cfrange" >
+  <input type="range" ng-change="updateCashFlow(this)" ng-model="tmpVal" min="-10000" max="10000">
+</div>
+
+<script src="bower_components\d3\d3.min.js"></script>
+<script src="bower_components\c3\c3.min.js"></script>
+<script src="bower_components\angular\angular.min.js"></script>
+<script src="bower_components\c3-angular\c3-angular.min.js"></script>
+
+</body>
+</html>
+
+<script>
+var app = angular.module('myApp', ['gridshore.c3js.chart']);
+var selectedYear = 0;
+var accvalArr = ['data1', 15000,60000,20000,358000,315679, 34578933.]
+var cashflowArr = ['data1', 0, 0, 0, 0, 50, -50]
+
+app.controller('personCtrl', function($scope) {
+    $scope.chart = null;
+
+
+    for(i=1; i < 60; i++) {
+      accvalArr[i] = 100000 + i * 500
+      cashflowArr[i] = 0
+    }
+
+    $scope.updateCashFlow = function() {
+      cashflowArr[selectedYear + 1] = parseInt($scope.tmpVal)
+       $scope.cfshowGraph()
+      setTimeout(function() {   d3.selectAll("#cfrange")
+        .style(
+          {
+            'display': 'none',
+          })
+          }, 3000);
+    }
+
+    $scope.showGraph = function() {
+        $scope.chart = c3.generate({
+                bindto: '#chart',
+                data: {
+                  columns: [
+                   accvalArr
+                  ],
+                  onclick: $scope.clickEvent,
+                  types: {
+                    'data1':'bar'
+                  }
+                }
+            });
+    }
+
+    $scope.cfshowGraph = function() {
+        $scope.cfchart = c3.generate({
+                bindto: '#cashflow',
+                data: {
+                  columns: [
+                    cashflowArr
+                  ],
+                  onclick: $scope.clickEvent,
+                  types: {
+                    'data1':'bar'
+                  }
+                }
+            });
+    }
+
+    $scope.clickEvent = function(d) {
+      d3.selectAll("#cfrange")
+        .style(
+          {
+            'left': d3.event.pageX - 50 + 'px',
+            'top': d3.event.pageY + 'px',
+            'display': 'block',
+          })
+
+
+       selectedYear = d.x;
+       $scope.tmpVal = cashflowArr[selectedYear + 1]
+    }
+
+});
+
+d3.select('body').on('click', function(){
+  //console.log('msg is'+  (d3.event.pageX) );
+})
+
+
+
+
+
+</script>
