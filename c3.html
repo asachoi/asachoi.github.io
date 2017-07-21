@@ -1,41 +1,36 @@
 <html>
 <head>
   <link rel="stylesheet" type="text/css" href="bower_components/c3/c3.min.css"></link>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+  <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
 <style>
   #cfrange {
     position: absolute;
     left: 0px;
     top: 150px;
-    display:none
-}
-input[type=range] {
-  -webkit-appearance: none; /* Hides the slider so that custom slider can be made */
-  width: 100%; /* Specific width is required for Firefox. */
-  background: transparent; /* Otherwise white in Chrome */
+    display:none;
+    width: 200px;
+    background-color:white;
+    //border: 1px solid #000000;
+
 }
 
-/* Special styling for WebKit/Blink */
-input[type=range]::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  border: 1px solid #000000;
-  height: 36px;
-  width: 16px;
-  border-radius: 3px;
-  background: #222222;
-  cursor: pointer;
-  margin-top: -14px; /* You need to specify a margin in Chrome, but in Firefox and IE it is automatic */
-  box-shadow: 1px 1px 1px #000000, 0px 0px 1px #0d0d0d; /* Add cool effects to your sliders! */
-}
 </style>
 </head>
 <body ng-app="myApp" ng-controller="personCtrl" ng-init="showGraph();cfshowGraph()">
 <h2>Account Value</h2>
 <div id="chart"></div>
 <h2>Cash flow</h2>
-<div id="cashflow"></div>
+<div id="cashflow" width="60%"></div>
 <div id="cfrange" >
-  <input type="range" ng-change="updateCashFlow(this)" ng-model="tmpVal" min="-10000" max="10000">
+  <input type="range" ng-change="updateCashFlow(this)" ng-model="tmpVal" min="-10000" max="10000" class="mdl-slider mdl-js-slider" >
+  {{tmpVal}}
 </div>
+
+<div id="cashInOut" width="30%">
+</div>
+{{inflow}} {{outflow}}
 
 <script src="bower_components\d3\d3.min.js"></script>
 <script src="bower_components\c3\c3.min.js"></script>
@@ -48,27 +43,52 @@ input[type=range]::-webkit-slider-thumb {
 <script>
 var app = angular.module('myApp', ['gridshore.c3js.chart']);
 var selectedYear = 0;
-var accvalArr = ['data1', 15000,60000,20000,358000,315679, 34578933.]
-var cashflowArr = ['data1', 0, 0, 0, 0, 50, -50]
+var accvalArr = ['data1']
+var cashflowArr = ['data1']
+
 
 app.controller('personCtrl', function($scope) {
     $scope.chart = null;
+    $scope.inflow = 0
+    $scope.outflow = 0
 
 
     for(i=1; i < 60; i++) {
-      accvalArr[i] = 100000 + i * 500
+      accvalArr[i] = 100000 + i * 500 * i
       cashflowArr[i] = 0
     }
 
     $scope.updateCashFlow = function() {
       cashflowArr[selectedYear + 1] = parseInt($scope.tmpVal)
-       $scope.cfshowGraph()
+      $scope.cfshowGraph()
+
       setTimeout(function() {   d3.selectAll("#cfrange")
         .style(
           {
             'display': 'none',
           })
           }, 3000);
+
+      var cfArr = cashflowArr.slice(0)
+      cfArr.shift()
+
+      console.log(cfArr)
+
+      $scope.inflow = cfArr.reduce(
+
+        function(total=0, num) {
+          return (num > 0 ? total : total - (num))
+        },
+        0)
+
+      $scope.outflow = cfArr.reduce(
+                function(total=0, num) {
+          return (num < 0 ? total : total + (num))
+        },
+      0)
+
+      $scope.cfshowPieGraph()
+
     }
 
     $scope.showGraph = function() {
@@ -101,6 +121,19 @@ app.controller('personCtrl', function($scope) {
             });
     }
 
+    $scope.cfshowPieGraph = function() {
+        $scope.cfchart = c3.generate({
+                bindto: '#cashInOut',
+                data: {
+                  columns: [
+                    ['Inflow', $scope.outflow],
+                    ['Outflow', $scope.inflow]
+                  ],
+                  type : 'pie',
+                }
+            });
+    }
+
     $scope.clickEvent = function(d) {
       d3.selectAll("#cfrange")
         .style(
@@ -109,10 +142,12 @@ app.controller('personCtrl', function($scope) {
             'top': d3.event.pageY + 'px',
             'display': 'block',
           })
-
-
        selectedYear = d.x;
+
+
+       $scope.$apply(function() {
        $scope.tmpVal = cashflowArr[selectedYear + 1]
+        });
     }
 
 });
