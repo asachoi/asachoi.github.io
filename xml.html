@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body ng-app="myApp" ng-controller="personCtrl">
+Loading time: {{loading}}
+<br>
+Parsing time: {{parsing}}
+
+Data:
+<pre>
+  {{state | json}}
+</pre>
+
+
+<script src="bower_components/xml-to-json/json2xml.min.js"></script>
+<script src="bower_components/xml-to-json/xml.min.js"></script>
+<script src="bower_components\angular\angular.min.js"></script>
+<script>
+  var app = angular.module('myApp', []);
+
+  app.controller('personCtrl', function($scope, $http) {
+
+      var state = {}
+
+      var t0 = performance.now();
+
+			$http.get('HK_EN_RULEBOOK_20170630_14150000.xml')
+			.then(
+				function(data) {
+					state.xml = (data.data)
+ 					 var t1 = performance.now();
+ 					 $scope.loading = (t1 - t0)
+					  //console.log("Call to doSomething took " + (t1 - t0) + " milliseconds.")
+
+				    jsonData = xml.xmlToJSON(state.xml);
+				    state.baseQuestion = jsonData.ruleset.baseQuestions.section
+				    state.categories = jsonData.ruleset.categories.category
+				    state.rules = jsonData.ruleset.rules.rule
+            var t2 = performance.now();
+            $scope.parsing = (t2 - t1)
+            console.log("Call to doSomething took " + (t2 - t1) + " milliseconds.")
+
+				    console.debug(state)
+
+				    $scope.state=state
+
+				}
+			)
+
+  })
+</script>
+</body>
+</html>
