@@ -2,8 +2,7 @@
 <head>
   <link rel="stylesheet" type="text/css" href="bower_components/c3/c3.min.css"></link>
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-  <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
-  <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+
 <style>
 #cfrange {
     position: absolute;
@@ -16,70 +15,110 @@
 
 }
 
-
-
-.container {
-    width: 100%;
-
-    float: left;
-    margin-right: -600px;
+md-card: {
+  margin:10px
 }
-.content {
 
-    margin-right: 600px;
-}
-.sidebar {
-    width: 600px;
-    float: right;
-}
 
 </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Angular Material style sheet -->
+  <link rel="stylesheet" href="bower_components/angular-material/angular-material.min.css">
 </head>
-<body ng-app="myApp" ng-controller="personCtrl" ng-init="showGraph();cfshowGraph()">
-<h2>Account Value</h2>
-    <div class="container">
-      <div id="chart"></div>
-      <h2>Topup/Withdrawal</h2>
-      <div id="cashInOut"  class="sidebar" >
+<body ng-app="myApp" ng-controller="personCtrl">
+<div layout="row">
+  <div flex="70">
+    <div layout="row"><h2>Account Value / Surrender Value</h2></div>
+    <div layout="row">
+      <div flex="100" id="chart">
       </div>
-
-      <div id="cashflow" class="content">
-
+    </div>
+    <div layout="row">
+      <div flex="60" id="cashflow" >
       </div>
-      <div id="cfrange" >
-        <input type="range" ng-change="updateCashFlow(this)" ng-model="tmpVal" min="-10000" max="10000" class="mdl-slider mdl-js-slider" >
-        {{tmpVal}}
+      <div flex="10"></div>
+      <div flex="25" id="cashInOut">
       </div>
-
-
+    </div>
   </div>
+  <div flex="30">
+      <div><h2>Parameters</h2></div>
+
+        <md-card>
+            <md-input-container>
+              <label>I start my contribution at</label>
+              <input ng-model="startAge" ng-change="init()">
+            </md-input-container>
+
+        </md-card>
+      </div>
+</div>
+
+
+
+
+
+
+
+      <div id="cfrange" >
+        <md-card>
+        <md-slider flex  min="-10000" max="10000" ng-model="tmpVal" ng-change="updateCashFlow(this)">
+        </md-slider>
+        {{tmpVal > 0 ? 'Top up' : 'Withdraw'}}
+        <b>{{tmpVal |  abs | number}}</b> at age {{age }}
+        </md-card>
+      </div>
+
+
+
 <script src="bower_components\d3\d3.min.js"></script>
 <script src="bower_components\c3\c3.min.js"></script>
+
 <script src="bower_components\angular\angular.min.js"></script>
+<script src="bower_components\angular-animate\angular-animate.min.js"></script>
+<script src="bower_components/angular-aria/angular-aria.min.js"></script>
+<script src="bower_components/angular-messages/angular-messages.min.js"></script>
+
 <script src="bower_components\c3-angular\c3-angular.min.js"></script>
+<script src="bower_components/angular-material/angular-material.min.js"></script>
+
+
+
 
 </body>
 </html>
 
 <script>
-var app = angular.module('myApp', ['gridshore.c3js.chart']);
+var app = angular.module('myApp', ['gridshore.c3js.chart', 'ngMaterial']);
 var selectedYear = 0;
-var accvalArr = ['account value']
-var surArr = ['surrender value']
-var cashflowArr = ['cashflow']
-
+var accvalArr
+var surArr
+var cashflowArr
+var ages
 
 app.controller('personCtrl', function($scope) {
     $scope.chart = null;
     $scope.inflow = 0
     $scope.outflow = 0
+    $scope.startAge = 30
 
 
-    for(i=1; i < 60; i++) {
-      accvalArr[i] = 100000 + i * 500 * i
-      surArr[i] = 5000 + i * 200 * i
-      cashflowArr[i] = 0
+    var reset = function() {
+      accvalArr = ['account value']
+      surArr = ['surrender value']
+      cashflowArr = ['cashflow']
+      ages = ['x']
+
+      for(i = 1; i < 60 - $scope.startAge; i++) {
+        accvalArr[i] = 100000 + i * 500 * i
+        surArr[i] = 5000 + i * 200 * i
+        cashflowArr[i] = 0
+        ages[i] = i + parseInt($scope.startAge)
+      }
     }
+
+
+
 
     $scope.updateCashFlow = function() {
       cashflowArr[selectedYear + 1] = parseInt($scope.tmpVal)
@@ -114,26 +153,36 @@ app.controller('personCtrl', function($scope) {
 
     }
 
+    console.debug(accvalArr)
+    console.debug(surArr)
+
     $scope.showGraph = function() {
         $scope.chart = c3.generate({
                 bindto: '#chart',
+
                 data: {
+                  x: 'x',
                   columns: [
-                   accvalArr
-                   ,
-                   surArr
+                    ages,
+                   accvalArr,
+                   surArr,
                   ],
+                  //x: ages,
                   onclick: $scope.clickEvent,
                   type: 'bar'
-                }
-            });
+                },
+
+
+            })
     }
 
     $scope.cfshowGraph = function() {
         $scope.cfchart = c3.generate({
                 bindto: '#cashflow',
                 data: {
+                  x: 'x',
                   columns: [
+                    ages,
                     cashflowArr
                   ],
                   onclick: $scope.clickEvent,
@@ -180,19 +229,32 @@ app.controller('personCtrl', function($scope) {
             'top': d3.event.pageY + 'px',
             'display': 'block',
           })
-       selectedYear = d.x;
+          //console.debug(d)
+          selectedYear = d.index;
+          $scope.age = d.x
 
-
-       $scope.$apply(function() {
-       $scope.tmpVal = cashflowArr[selectedYear + 1]
-        });
+         $scope.$apply(function() {
+            $scope.tmpVal = cashflowArr[selectedYear + 1]
+          });
+    }
+    $scope.init = function() {
+      reset()
+      $scope.showGraph();
+      $scope.cfshowGraph()
     }
 
+    setTimeout($scope.init, 500)
 });
 
 d3.select('body').on('click', function(){
   //console.log('msg is'+  (d3.event.pageX) );
 })
+
+app.filter('abs', function () {
+  return function(val) {
+    return Math.abs(val);
+  }
+});
 
 
 
