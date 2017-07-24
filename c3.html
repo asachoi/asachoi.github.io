@@ -47,7 +47,7 @@ md-card: {
         <md-card>
             <md-input-container>
               <label>I start my contribution at</label>
-              <input ng-model="startAge" ng-change="init()">
+              <input ng-model="startAge" ng-change="reset()">
             </md-input-container>
 
         </md-card>
@@ -103,11 +103,13 @@ app.controller('personCtrl', function($scope) {
     $scope.startAge = 30
 
 
-    var reset = function() {
+    var resetData = function() {
       accvalArr = ['account value']
       surArr = ['surrender value']
       cashflowArr = ['cashflow']
       ages = ['x']
+      $scope.outflow = 0
+      $scope.inflow = 0
 
       for(i = 1; i < 60 - $scope.startAge; i++) {
         accvalArr[i] = 100000 + i * 500 * i
@@ -115,14 +117,13 @@ app.controller('personCtrl', function($scope) {
         cashflowArr[i] = 0
         ages[i] = i + parseInt($scope.startAge)
       }
+
+      setTimeout(angular.noop, 10000);
     }
-
-
-
 
     $scope.updateCashFlow = function() {
       cashflowArr[selectedYear + 1] = parseInt($scope.tmpVal)
-      $scope.cfshowGraph()
+
 
       setTimeout(function() {   d3.selectAll("#cfrange")
         .style(
@@ -144,17 +145,38 @@ app.controller('personCtrl', function($scope) {
         0)
 
       $scope.outflow = cfArr.reduce(
-                function(total=0, num) {
+        function(total=0, num) {
           return (num < 0 ? total : total + (num))
         },
       0)
-
-      $scope.cfshowPieGraph()
+      //$scope.cfshowGraph()
+      //$scope.cfshowPieGraph()
+      $scope.redraw()
 
     }
 
-    console.debug(accvalArr)
-    console.debug(surArr)
+    $scope.reset = function() {
+      resetData()
+      $scope.showGraph()
+      $scope.cfshowGraph()
+      $scope.cfshowPieGraph()
+    }
+
+    $scope.redraw = function() {
+
+       $scope.cfchart.load({
+        columns: [cashflowArr]
+       });
+
+$scope.cfshowPieGraph()
+
+        var chart2 = $scope.cfchart
+
+        d3.select(chart2.element)
+            .select('.' + c3.chart.internal.fn.CLASS.axisX)
+            .transition()
+            .attr('transform', "translate(" + 0 + "," + chart2.internal.y(0) + ")")
+    }
 
     $scope.showGraph = function() {
         $scope.chart = c3.generate({
@@ -164,15 +186,13 @@ app.controller('personCtrl', function($scope) {
                   x: 'x',
                   columns: [
                     ages,
-                   accvalArr,
-                   surArr,
+                    accvalArr,
+                    surArr,
                   ],
                   //x: ages,
                   onclick: $scope.clickEvent,
                   type: 'bar'
                 },
-
-
             })
     }
 
@@ -197,17 +217,19 @@ app.controller('personCtrl', function($scope) {
             });
 
         var chart = $scope.cfchart
-        d3.select(chart.element).select('.' + c3.chart.internal.fn.CLASS.axisX).transition()
+        d3.select(chart.element)
+            .select('.' + c3.chart.internal.fn.CLASS.axisX)
+            .transition()
             .attr('transform', "translate(" + 0 + "," + chart.internal.y(0) + ")")
     }
 
     $scope.cfshowPieGraph = function() {
-        $scope.cfchart = c3.generate({
+        $scope.cfpiechart = c3.generate({
                 bindto: '#cashInOut',
                 data: {
                   columns: [
-                    ['Inflow', $scope.outflow],
-                    ['Outflow', $scope.inflow]
+                    ['Total withdrawal', $scope.outflow],
+                    ['Total topup', $scope.inflow]
                   ],
                   type : 'pie',
                 },
@@ -229,7 +251,7 @@ app.controller('personCtrl', function($scope) {
             'top': d3.event.pageY + 'px',
             'display': 'block',
           })
-          //console.debug(d)
+          ////console.debug(d)
           selectedYear = d.index;
           $scope.age = d.x
 
@@ -237,11 +259,13 @@ app.controller('personCtrl', function($scope) {
             $scope.tmpVal = cashflowArr[selectedYear + 1]
           });
     }
+
     $scope.init = function() {
-      reset()
+      resetData()
       $scope.showGraph();
       $scope.cfshowGraph()
     }
+
 
     setTimeout($scope.init, 500)
 });
