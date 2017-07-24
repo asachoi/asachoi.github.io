@@ -47,7 +47,7 @@ md-card: {
         <md-card>
             <md-input-container>
               <label>I start my contribution at</label>
-              <input ng-model="startAge" ng-change="reset()">
+              <input ng-model="startAge" ng-enter="reset()">
             </md-input-container>
 
         </md-card>
@@ -157,9 +157,8 @@ app.controller('personCtrl', function($scope) {
 
     $scope.reset = function() {
       resetData()
-      $scope.showGraph()
-      $scope.cfshowGraph()
-      $scope.cfshowPieGraph()
+      //$scope.showGraph()
+      $scope.redraw()
     }
 
     $scope.redraw = function() {
@@ -168,7 +167,17 @@ app.controller('personCtrl', function($scope) {
         columns: [cashflowArr]
        });
 
-$scope.cfshowPieGraph()
+       $scope.chart.load(
+                  {
+                  columns: [
+                    ages,
+                    accvalArr,
+                    surArr,
+                  ]
+                  }
+        )
+
+        $scope.cfshowPieGraph()
 
         var chart2 = $scope.cfchart
 
@@ -281,7 +290,19 @@ app.filter('abs', function () {
 });
 
 
+app.directive('ngEnter', function () {
+    return function (scope, element, attrs) {
+        element.bind("keydown keypress", function (event) {
+            if(event.which === 13) {
+                scope.$apply(function (){
+                    scope.$eval(attrs.ngEnter);
+                });
 
+                event.preventDefault();
+            }
+        });
+    };
+});
 
 
 </script>

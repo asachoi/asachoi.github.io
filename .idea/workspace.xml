@@ -37,8 +37,8 @@
       <file leaf-file-name="c3.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/c3.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="23">
-              <caret line="170" column="23" lean-forward="false" selection-start-line="170" selection-start-column="23" selection-end-line="170" selection-end-column="23" />
+            <state relative-caret-position="408">
+              <caret line="49" column="49" lean-forward="false" selection-start-line="49" selection-start-column="49" selection-end-line="49" selection-end-column="49" />
               <folding />
             </state>
           </provider>
@@ -598,7 +598,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1018,8 +1018,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/c3.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="23">
-          <caret line="170" column="23" lean-forward="false" selection-start-line="170" selection-start-column="23" selection-end-line="170" selection-end-column="23" />
+        <state relative-caret-position="408">
+          <caret line="49" column="49" lean-forward="false" selection-start-line="49" selection-start-column="49" selection-end-line="49" selection-end-column="49" />
           <folding />
         </state>
       </provider>
