@@ -33,7 +33,7 @@
       <div flex="100" id="chart">
       </div>
     </div>
-    <div layout="row">
+    <div layout="row" >
       <div flex="60" id="cashflow" >
       </div>
       <div flex="10"></div>
@@ -43,13 +43,11 @@
   </div>
   <div flex="30">
       <div><h2>Parameters</h2></div>
-
         <md-card>
-            <md-input-container>
-              <label>I start my contribution at</label>
-              <input ng-model="startAge" ng-enter="reset()">
-            </md-input-container>
-
+          <md-input-container>
+            <label>I start my contribution at</label>
+            <input ng-model="startAge" ng-enter="reset()">
+          </md-input-container>
         </md-card>
       </div>
 </div>
@@ -112,6 +110,7 @@ app.controller('personCtrl', function($scope) {
       ages = ['x']
       $scope.outflow = 0
       $scope.inflow = 0
+
 
       for(i = 1; i < 60 - $scope.startAge; i++) {
         accvalArr[i] = 100000 + i * 500 * i
@@ -268,6 +267,7 @@ app.controller('personCtrl', function($scope) {
 
          $scope.$apply(function() {
             $scope.tmpVal = cashflowArr[selectedYear + 1]
+
           });
     }
 
