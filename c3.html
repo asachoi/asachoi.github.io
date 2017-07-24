@@ -4,20 +4,20 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 
 <style>
-#cfrange {
-    position: absolute;
-    left: 0px;
-    top: 150px;
-    display:none;
-    width: 200px;
-    background-color:white;
-    //border: 1px solid #000000;
+  #cfrange {
+      position: absolute;
+      left: 0px;
+      top: 150px;
+      display:none;
+      width: 200px;
+      background-color:white;
+      //border: 1px solid #000000;
 
-}
+  }
 
-.paddingcard: {
-  padding:10px
-}
+  .paddingcard: {
+    padding:10px
+  }
 
 
 </style>
@@ -27,7 +27,7 @@
 </head>
 <body ng-app="myApp" ng-controller="personCtrl">
 <div layout="row">
-  <div flex="70">
+  <div flex="70" id="mainChart">
     <div layout="row"><h2>Account Value / Surrender Value</h2></div>
     <div layout="row">
       <div flex="100" id="chart">
@@ -41,7 +41,7 @@
       </div>
     </div>
   </div>
-  <div flex="30">
+  <div flex="30" id="panel">
       <div><h2>Parameters</h2></div>
         <md-card>
           <md-input-container>
@@ -101,6 +101,12 @@ app.controller('personCtrl', function($scope) {
     $scope.inflow = 0
     $scope.outflow = 0
     $scope.startAge = 30
+
+ 
+
+
+
+
 
 
     var resetData = function() {
