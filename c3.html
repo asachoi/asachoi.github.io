@@ -15,8 +15,8 @@
 
 }
 
-md-card: {
-  margin:10px
+.paddingcard: {
+  padding:10px
 }
 
 
@@ -61,11 +61,13 @@ md-card: {
 
 
       <div id="cfrange" >
-        <md-card>
-        <md-slider flex  min="-10000" max="10000" ng-model="tmpVal" ng-change="updateCashFlow(this)">
-        </md-slider>
-        {{tmpVal > 0 ? 'Top up' : 'Withdraw'}}
-        <b>{{tmpVal |  abs | number}}</b> at age {{age }}
+        <md-card class="paddingcard">
+          <md-card-content>
+              <md-slider flex  min="-10000" max="10000" ng-model="tmpVal" ng-change="updateCashFlow(this)">
+              </md-slider>
+              {{tmpVal > 0 ? 'Top up' : 'Withdraw'}}
+              <b>{{tmpVal |  abs | number}}</b> at age {{age }}
+          </md-card-content>
         </md-card>
       </div>
 
