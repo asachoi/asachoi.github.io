@@ -19,6 +19,9 @@
     padding:10px
   }
 
+md-grid-tile {
+  background-color: #FFEEDD
+}
 
 </style>
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -26,32 +29,49 @@
   <link rel="stylesheet" href="bower_components/angular-material/angular-material.min.css">
 </head>
 <body ng-app="myApp" ng-controller="personCtrl">
-<div layout="row">
-  <div flex="70" id="mainChart">
-    <div layout="row"><h2>Account Value / Surrender Value</h2></div>
-    <div layout="row">
-      <div flex="100" id="chart">
+
+
+<md-grid-list
+  md-cols="4"
+  md-row-height="3:5"
+  md-gutter="8px">
+  <md-grid-tile md-colspan="3" style="padding:10px">
+    <md-grid-tile-header>
+      <h3>Account Value / Surrender Value</h3>
+    </md-grid-tile-header>
+
+      <div id="chart" flex="90" >
       </div>
-    </div>
-    <div layout="row" >
-      <div flex="60" id="cashflow" >
-      </div>
-      <div flex="10"></div>
-      <div flex="25" id="cashInOut">
-      </div>
-    </div>
-  </div>
-  <div flex="30" id="panel">
-      <div><h2>Parameters</h2></div>
+
+  </md-grid-tile>
+  <md-grid-tile md-rowspan="2">
+
+    <md-grid-tile-header><h3>Parameters</h3></md-grid-tile-header>
+
+      <div layout="row" layout-align="top">
         <md-card>
           <md-input-container>
-            <label>I start my contribution at</label>
-            <input ng-model="startAge" ng-enter="reset()">
+
+              <label>I start my contribution at</label>
+              <input ng-model="startAge" ng-enter="reset()">
+
           </md-input-container>
         </md-card>
       </div>
-</div>
 
+</div>
+  </md-grid-tile>
+  <md-grid-tile md-colspan="2">
+    <md-grid-tile-header><h3>Cashflow</h3></md-grid-tile-header>
+    <div id="cashflow"  flex="90"  >
+    </div>
+  </md-grid-tile>
+  <md-grid-tile md-colspan="1">
+    <md-grid-tile-header><h3>Summary</h3></md-grid-tile-header>
+    <div  flex="90" id="cashInOut">
+    </div>
+  </md-grid-tile>
+</md-grid-list>
 
 
 
@@ -102,7 +122,7 @@ app.controller('personCtrl', function($scope) {
     $scope.outflow = 0
     $scope.startAge = 30
 
- 
+
 
 
 
@@ -197,7 +217,6 @@ app.controller('personCtrl', function($scope) {
     $scope.showGraph = function() {
         $scope.chart = c3.generate({
                 bindto: '#chart',
-
                 data: {
                   x: 'x',
                   columns: [
@@ -209,6 +228,8 @@ app.controller('personCtrl', function($scope) {
                   onclick: $scope.clickEvent,
                   type: 'bar'
                 },
+
+
             })
     }
 
@@ -284,7 +305,7 @@ app.controller('personCtrl', function($scope) {
     }
 
 
-    setTimeout($scope.init, 500)
+    setTimeout($scope.init, 1500)
 });
 
 d3.select('body').on('click', function(){
