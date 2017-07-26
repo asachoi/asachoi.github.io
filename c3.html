@@ -53,8 +53,8 @@ md-grid-tile {
           <md-input-container>
 
               <label>I start my contribution at</label>
-              <input ng-model="startAge" ng-enter="reset()">
-
+              <input ng-model="input.startAge" >
+              <md-button ng-click="reset()">Update</md-button>
           </md-input-container>
         </md-card>
       </div>
@@ -81,7 +81,9 @@ md-grid-tile {
       <div id="cfrange" >
         <md-card class="paddingcard">
           <md-card-content>
-              <md-slider flex  min="-10000" max="10000" ng-model="tmpVal" ng-change="updateCashFlow(this)">
+              <md-slider flex  min="-10000" max="10000"
+                         ng-model="tmpVal"
+                         ng-change="updateCashFlow(this)">
               </md-slider>
               {{tmpVal > 0 ? 'Top up' : 'Withdraw'}}
               <b>{{tmpVal |  abs | number}}</b> at age {{age }}
@@ -120,7 +122,10 @@ app.controller('personCtrl', function($scope) {
     $scope.chart = null;
     $scope.inflow = 0
     $scope.outflow = 0
-    $scope.startAge = 30
+    $scope.input = {
+      startAge: 30
+    }
+
 
 
 
@@ -138,14 +143,16 @@ app.controller('personCtrl', function($scope) {
       $scope.inflow = 0
 
 
-      for(i = 1; i < 60 - $scope.startAge; i++) {
+      for(i = 1; i < 60 - $scope.input.startAge; i++) {
         accvalArr[i] = 100000 + i * 500 * i
         surArr[i] = 5000 + i * 200 * i
         cashflowArr[i] = 0
-        ages[i] = i + parseInt($scope.startAge)
+        ages[i] = i + parseInt($scope.input.startAge)
       }
 
-      setTimeout(angular.noop, 10000);
+
+
+      //setTimeout(angular.noop, 10000);
     }
 
     $scope.updateCashFlow = function() {
@@ -183,17 +190,19 @@ app.controller('personCtrl', function($scope) {
     }
 
     $scope.reset = function() {
+
       resetData()
+
       //$scope.showGraph()
       $scope.redraw()
     }
 
     $scope.redraw = function() {
-
+      //console.debug('redraw')
        $scope.cfchart.load({
         columns: [cashflowArr]
        });
-
+console.debug(ages)
        $scope.chart.load(
                   {
                   columns: [
@@ -305,7 +314,8 @@ app.controller('personCtrl', function($scope) {
     }
 
 
-    setTimeout($scope.init, 1500)
+    setTimeout($scope.init, 500)
+
 });
 
 d3.select('body').on('click', function(){
@@ -323,11 +333,14 @@ app.directive('ngEnter', function () {
     return function (scope, element, attrs) {
         element.bind("keydown keypress", function (event) {
             if(event.which === 13) {
+
+
+
                 scope.$apply(function (){
-                    scope.$eval(attrs.ngEnter);
+
                 });
 
-                event.preventDefault();
+                //event.preventDefault();
             }
         });
     };
