@@ -1,28 +1,36 @@
 <html>
 <head>
   <meta name=viewport content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <script src="js/atrament.min.js"></script>
+  <script src="bower_components/sketchpad/scripts/sketchpad.js"></script>
+  <script src="bower_components/jquery/dist/jquery.min.js"></script>
+
 </head>
 <body>
-<script src="js/atrament.min.js">
+<table>
+  <tr>
+    <td>  <h2>Atrament</h2>
+      <button id="clear">Clear</button>
+      <button id="save">Save</button>
+      <br>
+      <canvas id="mySketcher" width="300px" height="200px" style="background-color:#EEEEEE"></canvas></td>
+    <td>  <h2>SketchPAD</h2>
+      <button id="clear2">Clear</button>
+      <button id="save2">Save</button>
+      <button id="redraw">Redraw</button>
+      <br>
 
-</script>
-<script src="bower_components/sketchpad/scripts/sketchpad.js"></script>
-<script src="bower_components/jquery/dist/jquery.min.js"></script>
+      <canvas class="sketchpad" id="sketchpad"  style="background-color:#EEEEEE"><canvas></td>
+  </tr>
+</table>
 
-<h2>Atrament</h2>
-<button id="clear">Clear</button>
-<button id="save">Save</button>
-<br>
 
-  <canvas id="mySketcher" width="400px" height="300px" style="background-color:#EEEEEE"></canvas>
 
-    <h2>SketchPAD</h2>
-    <button id="clear2">Clear</button>
-    <button id="save2">Save</button>
-    <button id="redraw">Redraw</button>
-    <br>
 
-  <canvas class="sketchpad" id="sketchpad"  style="background-color:#EEEEEE"><canvas>
+
+
+
+
   <script>
     var sketcher = atrament('#mySketcher');
     var clearButton = document.getElementById("clear");
@@ -57,9 +65,6 @@
     redraw.onclick = function() {
       sketchpad.animate(10);
     }
-
-
-
 </script>
 
 
