@@ -1,10 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f7f08bc0-35e4-440b-9eef-fdd485814374" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/atrament.min.js" afterPath="$PROJECT_DIR$/js/atrament.min.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/sketch.html" afterPath="$PROJECT_DIR$/sketch.html" />
-    </list>
+    <list default="true" id="f7f08bc0-35e4-440b-9eef-fdd485814374" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
