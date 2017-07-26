@@ -6,27 +6,57 @@
 <script src="js/atrament.min.js">
 
 </script>
+<script src="bower_components/sketchpad/scripts/sketchpad.js"></script>
+<script src="bower_components/jquery/dist/jquery.min.js"></script>
 
+<h2>Atrament</h2>
 <button id="clear">Clear</button>
 <button id="save">Save</button>
 <br>
 
-<canvas id="mySketcher" width="500px" height="500px" style="background-color:#EEEEEE">
+  <canvas id="mySketcher" width="400px" height="300px" style="background-color:#EEEEEE"></canvas>
 
+    <h2>SketchPAD</h2>
+    <button id="clear2">Clear</button>
+    <button id="save2">Save</button>
+    <button id="redraw">Redraw</button>
+    <br>
+
+  <canvas class="sketchpad" id="sketchpad"  style="background-color:#EEEEEE"><canvas>
   <script>
     var sketcher = atrament('#mySketcher');
     var clearButton = document.getElementById("clear");
     var saveButton = document.getElementById("save");
+
+    var clear2Button = document.getElementById("clear2");
+    var save2Button = document.getElementById("save2");
+
+    var sketchpad = new Sketchpad({
+      element: '#sketchpad',
+      width: 400,
+      height: 300,
+    });
 
     clearButton.onclick = function() {
       sketcher.clear()
     }
 
     saveButton.onclick = function() {
-    var canvas = document.getElementById("mySketcher");
-    window.open(canvas.toDataURL("image/png"));
+      var canvas = document.getElementById("mySketcher");
+      window.open(canvas.toDataURL("image/png"));
     }
 
+    clear2Button.onclick = function() {
+      sketchpad.undo()
+    }
+
+    save2Button.onclick = function() {
+      var canvas = document.getElementById("sketchpad");
+      window.open(canvas.toDataURL("image/png"));
+    }
+    redraw.onclick = function() {
+      sketchpad.animate(10);
+    }
 
 
 
