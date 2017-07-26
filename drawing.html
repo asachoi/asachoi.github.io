@@ -1,19 +1,38 @@
+<html>
+<head>
+
+</head>
+<body>
 <script src="js/atrament.min.js">
 
 </script>
 
-<button on-click="del()">Clear</button>
+<button id="clear">Clear</button>
+<button id="save">Save</button>
 <br>
 
 <canvas id="mySketcher" width="500px" height="500px">
 
   <script>
-  var sketcher = atrament('#mySketcher');
-  var del = function() {
-  console.debug('claer')
-    sketcher.clear()
-  }
+    var sketcher = atrament('#mySketcher');
+    var clearButton = document.getElementById("clear");
+    var saveButton = document.getElementById("save");
+
+    clearButton.onclick = function() {
+      sketcher.clear()
+    }
+
+    saveButton.onclick = function() {
+    var canvas = document.getElementById("mySketcher");
+    window.open(canvas.toDataURL("image/png"));
+    }
+
+
+
 
 </script>
 
 
+
+</body>
+</html>
