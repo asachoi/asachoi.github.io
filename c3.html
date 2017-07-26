@@ -53,7 +53,7 @@ md-grid-tile {
           <md-input-container>
 
               <label>I start my contribution at</label>
-              <input ng-model="input.startAge" >
+              <input ng-model="input.startAge" ng-enter="reset()" >
               <md-button ng-click="reset()">Update</md-button>
           </md-input-container>
         </md-card>
