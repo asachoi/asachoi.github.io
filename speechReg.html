@@ -1,0 +1,40 @@
+<div id="result">
+
+</div>
+<button onclick="start()"></button>
+<button onclick="end()"></button>
+
+<script
+  src="//code.jquery.com/jquery-2.2.4.min.js"
+  integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+  crossorigin="anonymous"></script>
+
+<script>
+  var recognition = new webkitSpeechRecognition();
+
+  recognition.continuous=true;
+  recognition.interimResults=true;
+  recognition.lang="yue-Hant-HK";
+
+  recognition.onstart=function(){
+    console.log('start...');
+  };
+  recognition.onend=function(){
+    console.log('end!');
+  };
+
+  recognition.onresult=function(event){
+    var i = event.resultIndex;
+    var j = event.results[i].length-1;
+    show.innerHTML = event.results[i][j].transcript;
+  };
+
+
+  function start() {
+    recognition.start();
+  }
+
+  function end() {
+    recognition.end();
+  }
+</script>
