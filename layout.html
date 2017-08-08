@@ -16,6 +16,10 @@
           background-color:grey;
           width:100%;
           margin: 0px;
+         }
+
+         #sidenav {
+          transition: all 400ms ease-out 400ms;
           }
       </style>
 </head>
@@ -23,11 +27,11 @@
 <section layout="column" flex>
   <md-toolbar id="header">
     <md-button ng-click="toggleLeft()"  >
-      Open sidenav
+      Open sidenav (Toolbar)
     </md-button>
   </md-toolbar>
   <md-sidenav md-component-id="left"
-              md-whiteframe="4">
+              md-whiteframe="4" id="sidenav">
     <md-toolbar >
       <h1 class="md-toolbar-tools">Disabled Backdrop</h1>
     </md-toolbar>
@@ -42,7 +46,7 @@
   </md-sidenav>
   <md-content flex >
     <div layout="row">
-      <div flex="{{left}}" style="padding:10px">
+      <div flex="{{left}}" style="padding:10px" id="sidenav">
         <md-button ng-click="close()"  >
           close
         </md-button>
