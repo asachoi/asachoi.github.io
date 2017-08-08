@@ -20,7 +20,7 @@
   }
 
 md-grid-tile {
-  background-color: #FFEEDD;
+
   padding-top: 400px;
 }
 
@@ -35,8 +35,10 @@ md-grid-tile {
 <md-grid-list
   md-cols="4"
   md-row-height="6:9"
-  md-gutter="8px">
-  <md-grid-tile md-colspan="3" style="padding:10px">
+  md-gutter="8px"
+
+  >
+  <md-grid-tile md-colspan="3" style="padding:10px" >
     <md-grid-tile-header>
       <h3>Account Value / Surrender Value</h3>
     </md-grid-tile-header>
@@ -44,70 +46,64 @@ md-grid-tile {
 
       </div>
 
-  </md-grid-tile>
-  <md-grid-tile md-rowspan="2" layout-align="center start">
-    <md-grid-tile-header><h3>Parameters</h3></md-grid-tile-header>
-    <md-grid-tile-content>
-    <div layout="column" layout-fill>
+    </md-grid-tile>
+    <md-grid-tile md-rowspan="2" layout-align="center start">
+      <md-grid-tile-header><h3>Parameters</h3></md-grid-tile-header>
+      <md-grid-tile-content>
+      <div layout="column" layout-fill>
 
-      <md-card style="margin-top: 60px">
-        <md-input-container>
-          <label>I start my contribution at</label>
-            <input ng-model="input.startAge" ng-enter="reset()" >
-            <md-button ng-click="reset()">Update</md-button>
-        </md-input-container>
-      </md-card>
-
-      <md-tabs>
-        <md-tab label="Tab #1"></md-tab>
-        <md-tab label="Tab #2"></md-tab>
-        <md-tab label="Tab #3"></md-tab>
-      </md-tabs>
-    </div>
-    </md-grid-tile-content>
-  </md-grid-tile>
-  <md-grid-tile md-colspan="2">
-    <md-grid-tile-header><h3>Cashflow</h3></md-grid-tile-header>
-    <div id="cashflow"  flex="90" style="margin-top: 60px" >
-    </div>
-  </md-grid-tile>
-  <md-grid-tile md-colspan="1">
-    <md-grid-tile-header><h3>Summary</h3></md-grid-tile-header>
-    <div  flex="90" id="cashInOut" style="margin-top: 60px">
-    </div>
-  </md-grid-tile>
-</md-grid-list>
-
-
-
-
-
-
-      <div id="cfrange" >
-        <md-card class="paddingcard">
-          <md-card-content>
-              <md-slider flex  min="-10000" max="10000"
-                         ng-model="tmpVal"
-                         ng-change="updateCashFlow(this)">
-              </md-slider>
-              {{tmpVal > 0 ? 'Top up' : 'Withdraw'}}
-              <b>{{tmpVal |  abs | number}}</b> at age {{age }}
-          </md-card-content>
+        <md-card style="margin-top: 60px">
+          <md-input-container>
+            <label>I start my contribution at</label>
+              <input ng-model="input.startAge" ng-enter="reset()" >
+              <md-button ng-click="reset()">Update</md-button>
+          </md-input-container>
         </md-card>
+
+        <md-tabs>
+          <md-tab label="Tab #1"></md-tab>
+          <md-tab label="Tab #2"></md-tab>
+          <md-tab label="Tab #3"></md-tab>
+        </md-tabs>
       </div>
+      </md-grid-tile-content>
+    </md-grid-tile>
+    <md-grid-tile md-colspan="2">
+      <md-grid-tile-header><h3>Cashflow</h3></md-grid-tile-header>
+      <div id="cashflow"  flex="90" style="margin-top: 60px" >
+      </div>
+    </md-grid-tile>
+    <md-grid-tile md-colspan="1">
+      <md-grid-tile-header><h3>Summary</h3></md-grid-tile-header>
+      <div  flex="90" id="cashInOut" style="margin-top: 60px">
+      </div>
+    </md-grid-tile>
+  </md-grid-list>
+        <div id="cfrange" style="opacity:.9">
+          <md-card class="paddingcard" style="opacity:.9">
+            <md-card-content>
+                <md-slider flex  min="-10000" max="10000"
+                           ng-model="tmpVal"
+                           ng-change="updateCashFlow(this)">
+                </md-slider>
+                {{tmpVal > 0 ? 'Top up' : 'Withdraw'}}
+                <b>{{tmpVal |  abs | number}}</b> at age {{age }}
+            </md-card-content>
+          </md-card>
+        </div>
 
 
 
-<script src="bower_components\d3\d3.min.js"></script>
-<script src="bower_components\c3\c3.min.js"></script>
+        <script src="bower_components\d3\d3.min.js"></script>
+        <script src="bower_components\c3\c3.min.js"></script>
 
-<script src="bower_components\angular\angular.min.js"></script>
-<script src="bower_components\angular-animate\angular-animate.min.js"></script>
-<script src="bower_components/angular-aria/angular-aria.min.js"></script>
-<script src="bower_components/angular-messages/angular-messages.min.js"></script>
+        <script src="bower_components\angular\angular.min.js"></script>
+        <script src="bower_components\angular-animate\angular-animate.min.js"></script>
+        <script src="bower_components/angular-aria/angular-aria.min.js"></script>
+        <script src="bower_components/angular-messages/angular-messages.min.js"></script>
 
-<script src="bower_components\c3-angular\c3-angular.min.js"></script>
-<script src="bower_components/angular-material/angular-material.min.js"></script>
+        <script src="bower_components\c3-angular\c3-angular.min.js"></script>
+        <script src="bower_components/angular-material/angular-material.min.js"></script>
 
 
 
@@ -127,16 +123,10 @@ app.controller('personCtrl', function($scope) {
     $scope.chart = null;
     $scope.inflow = 0
     $scope.outflow = 0
+
     $scope.input = {
       startAge: 30
     }
-
-
-
-
-
-
-
 
 
     var resetData = function() {
@@ -154,9 +144,6 @@ app.controller('personCtrl', function($scope) {
         cashflowArr[i] = 0
         ages[i] = i + parseInt($scope.input.startAge)
       }
-
-
-
       //setTimeout(angular.noop, 10000);
     }
 
@@ -207,7 +194,7 @@ app.controller('personCtrl', function($scope) {
        $scope.cfchart.load({
         columns: [cashflowArr]
        });
-console.debug(ages)
+       //console.debug(ages)
        $scope.chart.load(
                   {
                   columns: [
@@ -242,6 +229,18 @@ console.debug(ages)
                   onclick: $scope.clickEvent,
                   type: 'bar'
                 },
+
+              tooltip: {
+                  format: {
+                      title: function (d) {
+                         return d;
+                      },
+                      value: function (value, ratio, id) {
+                          return ''
+                      }
+          //            value: d3.format(',') // apply this format to both y and y2
+                  }
+              }
 
 
             })
