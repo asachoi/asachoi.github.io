@@ -45,7 +45,7 @@
 
             /* Opera */
             -o-transform: rotate(90deg);
-transition: all 400ms ease-out 400ms;
+            transition: all 400ms ease-out 400ms;
 
 
           }
@@ -76,7 +76,7 @@ transition: all 400ms ease-out 400ms;
     <div layout="row">
       <div flex="{{left}}" style="padding:10px" id="sidenav">
         <md-button ng-click="close()"  >
-          close
+          {{mnuClose}}
         </md-button>
         <div class="mnuItem" ng-repeat="m in menu">
           <div id="mnuContext" ng-class="mnuText" style="padding:10px">{{m}}</div>
@@ -86,15 +86,14 @@ transition: all 400ms ease-out 400ms;
         md-cols-sm="{{col}}" md-cols-md="{{col}}" md-cols-gt-md="{{col}}"
         md-row-height-gt-md="1:1" md-row-height="2:2"
          flex="{{right}}">
-        <md-grid-tile class="blue gtile" ng-repeat="c in content"
-                      md-colspan="{{c.cols}}"
-                      style="
-                        background-color: {{c.color}};
-                        background-image: url('{{c.image}}');
-                      "
+          <md-grid-tile class="blue gtile" ng-repeat="c in content"
+                        md-colspan="{{c.cols}}"
+                        style="
+                          background-color: {{c.color}};
+                          background-image: url('{{c.image}}');
+                        "
 
-        >
-
+          >
         </md-grid-tile>
       </md-grid-list>
     </div>
@@ -108,22 +107,27 @@ transition: all 400ms ease-out 400ms;
 <script>
          var app = angular.module('app', ['ngMaterial']);
 
-         app.controller('ctrl', function($scope, $timeout, $mdSidenav) {
+         app.controller('ctrl', function($scope, $timeout, $mdSidenav, $http) {
          $scope.col = 3;
          $scope.left = 25;
          $scope.right= 75;
+         $scope.mnuClose = 'Close'
+
          $scope.close = function() {
               if($scope.col == 3) {
                $scope.col = 4;
                $scope.left = 5;
                $scope.mnuText = 'rotate';
+               $scope.mnuClose = '>>';
               }
               else {
                $scope.col = 3;
                $scope.left = 25;
                $scope.mnuText = '';
+               $scope.mnuClose = 'Close';
               }
               $scope.right= 100 - $scope.left;
+
          }
             $scope.menu = ['menu 1', 'menu 2','menu 3']
 
@@ -172,6 +176,15 @@ transition: all 400ms ease-out 400ms;
                $mdSidenav(componentId).toggle();
              };
            }
+
+           $http.get('https://randomuser.me/api/').then(
+            function(data) {
+
+              $scope.users = data.results
+              //["0"].picture.large
+            }
+            );
+
 
          });
 

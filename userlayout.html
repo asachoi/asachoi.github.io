@@ -1,0 +1,99 @@
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Angular Material style sheet -->
+  <link rel="stylesheet" href="bower_components/angular-material/angular-material.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+        rel="stylesheet">
+  </link>
+  <style>
+
+         md-grid-tile {
+          transition: all 400ms;
+         }
+ 
+          .usercard {
+            minWidth: 100%
+            minHeight:100%;
+          }
+
+          #search {
+            padding:5px;
+          }
+
+      </style>
+</head>
+<body ng-app="app" ng-controller="ctrl"  layout="row">
+<section layout="column" flex>
+
+  <md-toolbar id="header">
+  </md-toolbar>
+
+  <md-content flex >
+    <div id="search">
+         Search: <input ng-model="searchKeyword"> <i class="material-icons">search</i>
+    </div>
+    <div layout="row">
+
+
+      <md-grid-list
+        md-cols-sm="4" md-cols-md="4" md-cols-gt-md="4"
+        md-row-height-gt-md="1:1" md-row-height="2:2"
+        flex="{{right}}">
+        <md-grid-tile class="blue gtile" ng-repeat="c in users | filter: searchKeyword"
+                      md-colspan="1"
+                      layout-wrap
+
+        >
+          <md-card class="usercard" md-theme="{{ showDarkTheme ? 'dark-purple' : 'default' }}" md-theme-watch
+                   [style.minHeight]="'100%'"
+                   [style.minWidth]="'100%'"
+          >
+            <md-card-title>
+              <md-card-title-text>
+                <span class="md-headline">{{c.name.first}} {{c.name.last}}</span>
+                <span class="md-subhead">{{c.gender}}</span>
+                <span class="md-subhead">{{c.phone}}</span>
+              </md-card-title-text>
+              <md-card-title-media>
+                <div class="md-media-sm card-media">
+                  <img src="{{c.picture.large}}">
+                </div>
+              </md-card-title-media>
+            </md-card-title>
+            <md-card-actions layout="row" layout-align="end center">
+              <md-button>Start</md-button>
+              <md-button>Edit</md-button>
+            </md-card-actions>
+          </md-card>
+        </md-grid-tile>
+      </md-grid-list>
+    </div>
+  </md-content>
+</section>
+<script src="bower_components\angular\angular.min.js"></script>
+<script src="bower_components\angular-animate\angular-animate.min.js"></script>
+<script src="bower_components/angular-aria/angular-aria.min.js"></script>
+<script src="bower_components/angular-messages/angular-messages.min.js"></script>
+<script src="bower_components/angular-material/angular-material.min.js"></script>
+<script>
+         var app = angular.module('app', ['ngMaterial']);
+
+         app.controller('ctrl', function($scope, $timeout, $mdSidenav, $http) {
+
+
+           $http.get('https://randomuser.me/api/?results=32').then(
+            function(data) {
+
+              $scope.users = data.data.results
+              console.debug($scope.users)
+              //["0"].picture.large
+            }
+            );
+
+
+         });
+
+      </script>
+</body>
+</html>
