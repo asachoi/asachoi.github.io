@@ -13,19 +13,20 @@
           margin:5px;
          }
           #search {
-            padding:5px;
-            min-height:20px;
+            padding:10px;
+
           }
 
           #header {
              background-color: green;
-             min-height:30px;
-             max-height:30px
+             min-height:40px;
+             max-height:40px;
+             padding: 10px;
           }
 
           md-card {
-            min-height:200px;
-            min-width: 100%;
+            min-height:160px;
+            min-width: 90%;
           }
 
       </style>
@@ -34,39 +35,47 @@
 <section layout="column" flex>
 
   <md-toolbar  md-scroll-shrink="true" id="header">
-    Header
+    header
   </md-toolbar>
 
   <md-content flex >
     <div id="search">
-         Search: <input ng-model="searchKeyword"> <i class="material-icons">search</i>
+      <md-input-container>
+        <label>Search</label>
+        <input ng-model="searchKeyword">
+      </md-input-container>
+
+   <i class="material-icons">search</i>
     </div>
-    <div layout="row">
+    <div layout="row" >
 
 
       <md-grid-list
         md-cols-sm="4" md-cols-md="4" md-cols-gt-md="4"
-        md-row-height-gt-md="1:1" md-row-height="5:4"
-        flex="{{right}}">
+        md-row-height-gt-md="1:1" md-row-height="7:5"
+        flex="{{right}}"
+        layout-padding>
         <md-grid-tile class="blue gtile" ng-repeat="c in users | filter: searchKeyword"
                       md-colspan="1"
 
         >
-          <div layout-fill>
+          <div layout-fill layout-margin>
 
 
-          <md-card md-theme="{{ showDarkTheme ? 'dark-purple' : 'default' }}" md-theme-watch>
-            <md-card-title>
-              <md-card-title-text>
-                <b>{{c.name.first}} {{c.name.last}}</b>
-                <span class="md-subhead">{{c.gender}}</span>
-                <span class="md-subhead">{{c.phone}}</span>
-              </md-card-title-text>
+          <md-card>
+            <md-card-title  layout-padding>
               <md-card-title-media>
                 <div class="md-media-sm card-media">
                   <img src="{{c.picture.large}}">
                 </div>
               </md-card-title-media>
+              <md-card-title-text>
+                <md-truncate>{{c.name.first}} {{c.name.last}}</md-truncate>
+
+                <span class="md-subhead">{{c.gender}}</span>
+                <span class="md-subhead">{{c.phone}}</span>
+              </md-card-title-text>
+
             </md-card-title>
             <md-card-actions layout="row" layout-align="end center">
               <md-button>Start</md-button>

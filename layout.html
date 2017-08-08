@@ -3,8 +3,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Angular Material style sheet -->
   <link rel="stylesheet" href="bower_components/angular-material/angular-material.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+        rel="stylesheet">
   </link>
   <style>
+  .btnClose {
+  transition: all 400ms ease-out 1000ms;
+  }
+            #header {
+             background-color: green;
+             min-height:40px;
+             max-height:40px;
+             padding: 10px;
+          }
          md-grid-list {
          margin: 2px; }
          md-grid-tile {
@@ -58,9 +69,8 @@
 <body ng-app="app" ng-controller="ctrl"  layout="row">
 <section layout="column" flex>
   <md-toolbar id="header">
-    <md-button ng-click="toggleLeft()"  >
-      Open sidenav (Toolbar)
-    </md-button>
+    <i class="material-icons" ng-click="toggleLeft()">menu</i>
+
   </md-toolbar>
   <md-sidenav md-component-id="left"
               md-whiteframe="4" id="sidenav">
@@ -79,9 +89,9 @@
   <md-content flex >
     <div layout="row">
       <div flex="{{left}}" style="padding:10px" id="sidenav">
-        <md-button ng-click="close()"  >
-          {{mnuClose}}
-        </md-button>
+
+        <md-icon class="btnClose" ng-click="close()" layout-padding>{{btnClose}}</md-icon>
+
         <div class="mnuItem" ng-repeat="m in menu">
           <div id="mnuContext" ng-class="mnuText" style="padding:10px">{{m}}</div>
         </div>
@@ -115,25 +125,27 @@
          $scope.col = 3;
          $scope.left = 25;
          $scope.right= 75;
-         $scope.mnuClose = 'Close'
+         $scope.btnClose = 'close'
+
 
          $scope.close = function() {
               if($scope.col == 3) {
                $scope.col = 4;
                $scope.left = 5;
                $scope.mnuText = 'rotate';
-               $scope.mnuClose = '>>';
+               $scope.btnClose = 'keyboard_arrow_right';
+
               }
               else {
                $scope.col = 3;
                $scope.left = 25;
                $scope.mnuText = '';
-               $scope.mnuClose = 'Close';
+               $scope.btnClose = 'close';
               }
               $scope.right= 100 - $scope.left;
 
          }
-            $scope.menu = ['menu 1', 'menu 2','menu 3']
+            $scope.menu = ['menu ONE', 'menu TWO','menu THREE']
 
            $scope.content = [
              {
