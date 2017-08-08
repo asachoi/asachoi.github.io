@@ -17,7 +17,16 @@
           width:100%;
           margin: 0px;
          }
+          .gtile {
 
+                     background-size:cover;
+                     background-position:center;
+
+                     background-repeat:no-repeat;
+                     -webkit-background-size:cover;
+                     -moz-background-size:cover;
+                     -o-background-size:cover;
+                     }
          #sidenav {
           transition: all 400ms ease-out 400ms;
           }
@@ -57,18 +66,13 @@
         md-cols-sm="{{col}}" md-cols-md="{{col}}" md-cols-gt-md="{{col}}"
         md-row-height-gt-md="1:1" md-row-height="2:2"
          flex="{{right}}">
-        <md-grid-tile class="blue" ng-repeat="c in content"
+        <md-grid-tile class="blue gtile" ng-repeat="c in content"
                       md-colspan="{{c.cols}}"
                       style="
-                     background-image: url('{{c.image}}');
-                     background-size:cover;
-                     background-position:center;
-                     background-color: {{c.color}};
-                     background-repeat:no-repeat;
-                     -webkit-background-size:cover;
-                     -moz-background-size:cover;
-                     -o-background-size:cover;
-                     "
+                        background-color: {{c.color}};
+                        background-image: url('{{c.image}}');
+                      "
+
         >
         </md-grid-tile>
       </md-grid-list>
