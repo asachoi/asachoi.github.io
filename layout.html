@@ -12,7 +12,7 @@
          }
 
         .mnuItem {
-          height:100px;
+          min-height:100px;
           background-color:grey;
           width:100%;
           margin: 5px;
@@ -30,6 +30,24 @@
          #sidenav {
           transition: all 400ms ease-out 400ms;
           width:25%;
+          }
+
+          .rotate {
+
+            /* Safari */
+            -webkit-transform: rotate(90deg);
+
+            /* Firefox */
+            -moz-transform: rotate(90deg);
+
+            /* IE */
+            -ms-transform: rotate(90deg);
+
+            /* Opera */
+            -o-transform: rotate(90deg);
+transition: all 400ms ease-out 400ms;
+
+
           }
       </style>
 </head>
@@ -61,6 +79,7 @@
           close
         </md-button>
         <div class="mnuItem" ng-repeat="m in menu">
+          <div id="mnuContext" ng-class="mnuText" style="padding:10px">{{m}}</div>
         </div>
       </div>
       <md-grid-list
@@ -75,6 +94,7 @@
                       "
 
         >
+
         </md-grid-tile>
       </md-grid-list>
     </div>
@@ -96,25 +116,27 @@
               if($scope.col == 3) {
                $scope.col = 4;
                $scope.left = 5;
+               $scope.mnuText = 'rotate';
               }
               else {
                $scope.col = 3;
                $scope.left = 25;
+               $scope.mnuText = '';
               }
               $scope.right= 100 - $scope.left;
          }
-            $scope.menu = ['xxxxx', 'bbbbb','cccc']
+            $scope.menu = ['menu 1', 'menu 2','menu 3']
 
            $scope.content = [
              {
                image: 'http://media.istockphoto.com/photos/family-care-picture-id515605078',
                cols: 2,
-               description: ''
+               description: 'this is menu one'
              },
              {
                image: 'http://media.istockphoto.com/photos/expressions-of-true-love-picture-id522126982',
 
-               description: ''
+               description: 'this is menu two'
              }
          ,
              {
