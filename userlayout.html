@@ -10,23 +10,31 @@
 
          md-grid-tile {
           transition: all 400ms;
+          margin:5px;
          }
-
-          .usercard {
-            minWidth: 100%
-            minHeight:100%;
-          }
-
           #search {
             padding:5px;
+            min-height:20px;
+          }
+
+          #header {
+             background-color: green;
+             min-height:30px;
+             max-height:30px
+          }
+
+          md-card {
+            min-height:200px;
+            min-width: 100%;
           }
 
       </style>
 </head>
-<body ng-app="app" ng-controller="ctrl"  layout="row">
+<body ng-app="app" ng-controller="ctrl"  layout="row" >
 <section layout="column" flex>
 
-  <md-toolbar id="header">
+  <md-toolbar  md-scroll-shrink="true" id="header">
+    Header
   </md-toolbar>
 
   <md-content flex >
@@ -38,20 +46,19 @@
 
       <md-grid-list
         md-cols-sm="4" md-cols-md="4" md-cols-gt-md="4"
-        md-row-height-gt-md="1:1" md-row-height="2:2"
+        md-row-height-gt-md="1:1" md-row-height="5:4"
         flex="{{right}}">
         <md-grid-tile class="blue gtile" ng-repeat="c in users | filter: searchKeyword"
                       md-colspan="1"
-                      layout-wrap
 
         >
-          <md-card class="usercard" md-theme="{{ showDarkTheme ? 'dark-purple' : 'default' }}" md-theme-watch
-                   [style.minHeight]="'100%'"
-                   [style.minWidth]="'100%'"
-          >
+          <div layout-fill>
+
+
+          <md-card md-theme="{{ showDarkTheme ? 'dark-purple' : 'default' }}" md-theme-watch>
             <md-card-title>
               <md-card-title-text>
-                <span class="md-headline">{{c.name.first}} {{c.name.last}}</span>
+                <b>{{c.name.first}} {{c.name.last}}</b>
                 <span class="md-subhead">{{c.gender}}</span>
                 <span class="md-subhead">{{c.phone}}</span>
               </md-card-title-text>
@@ -66,6 +73,8 @@
               <md-button>Edit</md-button>
             </md-card-actions>
           </md-card>
+
+        </div>
         </md-grid-tile>
       </md-grid-list>
     </div>
