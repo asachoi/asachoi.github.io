@@ -1,0 +1,161 @@
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Angular Material style sheet -->
+  <link rel="stylesheet" href="bower_components/angular-material/angular-material.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+        rel="stylesheet">
+  </link>
+  <style>
+
+  </style>
+</head>
+<body ng-app="app" ng-controller="ctrl">
+<h2>Customer</h2>
+<common-fields obj="user">
+</common-fields>
+
+<h2>Spouse</h2>
+<common-fields obj="getSpouse()">
+</common-fields>
+
+<h2>
+  <i class="material-icons" ng-click="addChild()">add_circle</i>
+Children
+  <i class="material-icons" ng-click="removeChild()">remove_circle</i>
+</h2>
+<common-fields ng-repeat="c in getChildren()" obj="c"></common-fields>
+
+<h2>
+  <i class="material-icons" ng-click="addDependant()">add_circle</i>
+  Other Dependants
+  <i class="material-icons" ng-click="removeDependant()">remove_circle</i>
+</h2>
+<div ng-repeat="c in getDependants()">
+  <md-input-container class="md-block" flex-gt-sm>
+    <label>Relationship</label>
+    <md-select ng-model="c.relationship">
+      <md-option  value="Father">Father</md-option>
+      <md-option  value="Mother">Mother</md-option>
+
+    </md-select>
+  </md-input-container>
+<common-fields  obj="c">
+
+</common-fields>
+</div>
+
+
+
+<pre>
+{{user|json}}
+</pre>
+<script src="bower_components\angular\angular.min.js"></script>
+<script src="bower_components\angular-animate\angular-animate.min.js"></script>
+<script src="bower_components/angular-aria/angular-aria.min.js"></script>
+<script src="bower_components/angular-messages/angular-messages.min.js"></script>
+<script src="bower_components/angular-material/angular-material.min.js"></script>
+<script>
+         var app = angular.module('app', ['ngMaterial']);
+
+         app.controller('ctrl', function($scope, $timeout, $mdSidenav, $http) {
+              $scope.user = {
+                commonFields: {},
+                dependents: []
+              };
+
+              $scope.addChild = function() {
+                $scope.addDependant('child')
+              }
+
+              $scope.removeChild = function() {
+                var ds = $scope.user.dependents
+                var i = ds.lastIndexOf(d => d.relationship == "child")
+                ds.splice(i,1)
+              }
+
+              $scope.removeDependant = function() {
+                var ds = $scope.user.dependents
+                var i = ds.lastIndexOf(d => !(d.relationship == "spouse" || d.relationship == "child"))
+                ds.splice(i,1)
+              }
+
+              $scope.addSpouse = function() {
+                $scope.addDependant('spouse')
+              }
+
+              $scope.getChildren = function() {
+                return $scope.user.dependents.filter(d => d.relationship == "child" );
+              }
+
+              $scope.getDependants = function() {
+                return $scope.user.dependents.filter(d => !(d.relationship == "spouse" || d.relationship == "child") );
+              }
+
+              $scope.getSpouse = function() {
+
+                  var spouse = $scope.user.dependents.filter(d => d.relationship == "spouse" );
+
+                  if(spouse.length == 0) {
+                    spouse = $scope.user.dependents.push({
+                      relationship: "spouse",
+
+                    })
+                  }
+                  else {
+                    spouse = spouse[0]
+                  }
+
+                  return spouse
+              }
+              $scope.addDependant = function(relation) {
+                $scope.user.dependents.push({relationship: relation})
+              }
+
+         });
+
+        app.directive("commonFields", function() {
+            return {
+                scope: {
+                  obj: '='
+                },
+                template : `
+                <md-card>
+                  <div layout-gt-sm="row">
+                    <md-input-container class="md-block" flex-gt-sm>
+                      <label>Title</label>
+                      <md-select ng-model="obj.state">
+                        <md-option  value="MR">Mr</md-option>
+                        <md-option  value="MS">Ms</md-option>
+                        <md-option  value="MISS">Miss</md-option>
+                      </md-select>
+                    </md-input-container>
+                    <md-input-container class="md-block" flex-gt-sm>
+                      <label>Full Name</label>
+                      <input ng-model="obj.fullname">
+                    </md-input-container>
+                    <md-input-container class="md-block" flex-gt-sm>
+                    <label>Gender</label>
+                      <md-select ng-model="obj.gender">
+                        <md-option  value="Male">Male</md-option>
+                        <md-option  value="Female">Female</md-option>
+
+                      </md-select>
+                    </md-input-container>
+                  </div>
+                  <div layout-gt-sm="row">
+                    <md-input-container class="md-block" flex-gt-sm>
+                      <label>Date of Birth</label>
+                      <md-datepicker ng-model="obj.dob" current-view-mode='year'></md-datepicker>
+                    </md-input-container>
+
+                  </div>
+                </md-card>
+                `
+
+            };
+        });
+
+      </script>
+</body>
+</html>
