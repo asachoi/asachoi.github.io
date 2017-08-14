@@ -11,63 +11,76 @@
   </style>
 </head>
 <body ng-app="app" ng-controller="ctrl">
+<div layout="row">
+  <div flex="30">
+    <h2>Data Object:</h2>
+    <pre>
+      {{user|json}}
+    </pre>
+  </div>
+  <div flex="70">
+    <md-card>
+      <md-card-title>
+        Customer
+      </md-card-title>
+      <md-card-content>
+        <common-fields obj="user">
+        </common-fields>
+        <md-input-container class="md-block" flex-gt-sm>
+          <label>Smoking Status</label>
+          <md-select ng-model="user.smokingstatus">
+            <md-option  value="Yes">Yes</md-option>
+            <md-option  value="No">No</md-option>
+          </md-select>
+        </md-input-container>
+      </md-card-content>
 
-<md-card>
-  <md-card-title>
-    Customer
-  </md-card-title>
-  <md-card-content>
-    <common-fields obj="user">
-    </common-fields>
-  </md-card-content>
-</md-card>
+    </md-card>
 
-<md-card>
-  <md-card-title>
-    Spouse
-  </md-card-title>
-  <md-card-content>
-    <common-fields obj="getSpouse()">
-    </common-fields>
-  </md-card-content>
-</md-card>
-
-
-<md-card>
-  <md-card-title>
-    <i class="material-icons" ng-click="addChild()">add_circle</i>
-    Children
-    <i class="material-icons" ng-click="removeChild()">remove_circle</i>
-  </md-card-title>
-  <md-card-content>
-    <common-fields ng-repeat="c in getChildren()" obj="c"></common-fields>
-  </md-card-content>
-</md-card>
-
-<md-card>
-  <md-card-title>
-    <i class="material-icons" ng-click="addDependant()">add_circle</i>
-    Other Dependants
-    <i class="material-icons" ng-click="removeDependant()">remove_circle</i>
-  </md-card-title>
-  <md-card-content>
-    <div ng-repeat="c in getDependants()">
-      <md-input-container class="md-block" flex-gt-sm>
-        <label>Relationship</label>
-        <md-select ng-model="c.relationship">
-          <md-option  value="Father">Father</md-option>
-          <md-option  value="Mother">Mother</md-option>
-        </md-select>
-      </md-input-container>
-      <common-fields  obj="c">
-  </md-card-content>
-</md-card>
+    <md-card>
+      <md-card-title>
+        Spouse
+      </md-card-title>
+      <md-card-content>
+        <common-fields obj="getSpouse()">
+        </common-fields>
+      </md-card-content>
+    </md-card>
 
 
-<h2>Data Object:</h2>
-<pre>
-{{user|json}}
-</pre>
+    <md-card>
+      <md-card-title>
+        <i class="material-icons" ng-click="addChild()">add_circle</i>
+        Children
+        <i class="material-icons" ng-click="removeChild()">remove_circle</i>
+      </md-card-title>
+      <md-card-content>
+        <common-fields ng-repeat="c in getChildren()" obj="c"></common-fields>
+      </md-card-content>
+    </md-card>
+
+    <md-card>
+      <md-card-title>
+        <i class="material-icons" ng-click="addDependant()">add_circle</i>
+        Other Dependants
+        <i class="material-icons" ng-click="removeDependant()">remove_circle</i>
+      </md-card-title>
+      <md-card-content>
+        <div ng-repeat="c in getDependants()">
+          <md-input-container class="md-block" flex-gt-sm>
+            <label>Relationship</label>
+            <md-select ng-model="c.relationship">
+              <md-option  value="Father">Father</md-option>
+              <md-option  value="Mother">Mother</md-option>
+            </md-select>
+          </md-input-container>
+          <common-fields  obj="c">
+      </md-card-content>
+    </md-card>
+
+  </div>
+
+</div>
 <script src="bower_components\angular\angular.min.js"></script>
 <script src="bower_components\angular-animate\angular-animate.min.js"></script>
 <script src="bower_components/angular-aria/angular-aria.min.js"></script>
