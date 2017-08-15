@@ -39,22 +39,34 @@
   </md-toolbar>
 
   <md-content flex >
-    <div id="search">
-      <md-input-container>
-        <label>Search</label>
-        <input ng-model="searchKeyword">
-      </md-input-container>
 
-   <i class="material-icons">search</i>
+    <div layout="col">
+
+      <md-button ng-click="orderBy='-registered'">Recent</md-button>
+      <md-button ng-click="orderBy='name.first'">Name</md-button>
+
+        <span id="search" flex="70" layout-align="end end">
+          <md-input-container>
+            <label>Search</label>
+            <input ng-model="searchKeyword">
+          </md-input-container>
+
+          <i class="material-icons">search</i>
+        </span>
     </div>
-    <h2>Recent</h2>
     <div layout="row" >
+
+
       <md-grid-list
         md-cols-md="4"
-        md-row-height="5:3"
-        flex="{{right}}"
+        md-row-height="5:4"
+        flex="100"
         layout-padding>
-        <md-grid-tile class="blue gtile" ng-repeat="c in users | filter: searchKeyword | orderBy: '-registered ' | limitTo: 8">
+
+        <md-grid-tile class="blue gtile" ng-repeat="c in users | filter: searchKeyword | orderBy: getOrderBy() | limitTo: 8"
+                      md-colspan="1"
+
+        >
           <div layout-fill layout-margin>
           <md-card>
             <md-card-title  layout-padding>
@@ -77,6 +89,7 @@
               <md-button>Edit</md-button>
             </md-card-actions>
           </md-card>
+
         </div>
         </md-grid-tile>
       </md-grid-list>
@@ -91,9 +104,9 @@
 <script>
          var app = angular.module('app', ['ngMaterial']);
 
-
          app.controller('ctrl', function($scope, $timeout, $mdSidenav, $http) {
 
+            $scope.orderBy = '-registered'
 
            $http.get('https://randomuser.me/api/?results=32').then(
             function(data) {
@@ -103,6 +116,11 @@
               //["0"].picture.large
             }
             );
+
+
+            $scope.getOrderBy = function() {
+             return $scope.orderBy
+            }
 
 
          });
