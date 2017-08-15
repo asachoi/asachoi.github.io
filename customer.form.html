@@ -59,10 +59,13 @@ margin-top:-23px;
       <md-card-title>
         <i class="material-icons" ng-click="addChild()">add_circle</i>
         Children
-        <i class="material-icons" ng-click="removeChild()">remove_circle</i>
+
       </md-card-title>
       <md-card-content>
-        <common-fields ng-repeat="c in getChildren()" obj="c"></common-fields>
+        <div ng-repeat="c in getChildren()">
+          <i class="material-icons" ng-click="removeDependant(c.id)">remove_circle</i>
+        <common-fields  obj="c"></common-fields>
+        </div>
       </md-card-content>
     </md-card>
 
@@ -70,10 +73,11 @@ margin-top:-23px;
       <md-card-title>
         <i class="material-icons" ng-click="addDependant()">add_circle</i>
         Other Dependants
-        <i class="material-icons" ng-click="removeDependant()">remove_circle</i>
+
       </md-card-title>
       <md-card-content>
         <div ng-repeat="c in getDependants()">
+          <i class="material-icons" ng-click="removeDependant(c.id)">remove_circle</i>
           <md-input-container class="md-block" flex-gt-sm>
             <label>Relationship</label>
             <md-select ng-model="c.relationship">
@@ -106,15 +110,11 @@ margin-top:-23px;
                 $scope.addDependant('child')
               }
 
-              $scope.removeChild = function() {
-                var ds = $scope.user.dependents
-                var i = ds.lastIndexOf(d => d.relationship == "child")
-                ds.splice(i,1)
-              }
 
-              $scope.removeDependant = function() {
+              $scope.removeDependant = function(id) {
+
                 var ds = $scope.user.dependents
-                var i = ds.lastIndexOf(d => !(d.relationship == "spouse" || d.relationship == "child"))
+                var i = ds.map(function(e) { return e.id; }).indexOf(id);
                 ds.splice(i,1)
               }
 
@@ -137,7 +137,7 @@ margin-top:-23px;
                   if(spouse.length == 0) {
                     spouse = $scope.user.dependents.push({
                       relationship: "spouse",
-
+                      id: 1
                     })
                   }
                   else {
@@ -147,14 +147,21 @@ margin-top:-23px;
                   return spouse
               }
               $scope.addDependant = function(relation) {
-                $scope.user.dependents.push({relationship: relation})
+                var id = Math.max.apply(Math,$scope.user.dependents.map(function(o){return o.id;}))
+
+
+
+                id += 1
+
+
+
+                $scope.user.dependents.push(
+                  {
+                    relationship: relation,
+                    id: id
+                  }
+                )
               }
-
-
-
-
-
-
          });
 
          app.directive("occupation", function() {
