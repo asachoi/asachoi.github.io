@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f7f08bc0-35e4-440b-9eef-fdd485814374" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/userlayout.html" afterPath="$PROJECT_DIR$/userlayout.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/customer.form.html" afterPath="$PROJECT_DIR$/customer.form.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -14,20 +14,20 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="customer.form.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="customer.form.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/customer.form.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="32" column="33" lean-forward="false" selection-start-line="32" selection-start-column="33" selection-end-line="32" selection-end-column="33" />
+            <state relative-caret-position="587">
+              <caret line="259" column="46" lean-forward="false" selection-start-line="259" selection-start-column="46" selection-end-line="259" selection-end-column="46" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="userlayout.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="userlayout.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/userlayout.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="106">
+            <state relative-caret-position="-110">
               <caret line="50" column="23" lean-forward="false" selection-start-line="50" selection-start-column="23" selection-end-line="50" selection-end-column="23" />
               <folding />
             </state>
@@ -73,6 +73,7 @@
       <find>rot</find>
       <find>search</find>
       <find>ds.</find>
+      <find>'</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -101,16 +102,15 @@
         <option value="$PROJECT_DIR$/speechReg.html" />
         <option value="$PROJECT_DIR$/layout.bak.html" />
         <option value="$PROJECT_DIR$/layout.html" />
-        <option value="$PROJECT_DIR$/customer.form.html" />
         <option value="$PROJECT_DIR$/userlayout.html" />
+        <option value="$PROJECT_DIR$/customer.form.html" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="204" />
-    <option name="y" value="310" />
+    <option name="x" value="164" />
     <option name="width" value="1364" />
-    <option name="height" value="726" />
+    <option name="height" value="1040" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -431,7 +431,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="204" y="310" width="1364" height="726" extended-state="0" />
+    <frame x="164" y="0" width="1364" height="1040" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -802,18 +802,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/customer.form.html">
+    <entry file="file://$PROJECT_DIR$/userlayout.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="32" column="33" lean-forward="false" selection-start-line="32" selection-start-column="33" selection-end-line="32" selection-end-column="33" />
+        <state relative-caret-position="-110">
+          <caret line="50" column="23" lean-forward="false" selection-start-line="50" selection-start-column="23" selection-end-line="50" selection-end-column="23" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/userlayout.html">
+    <entry file="file://$PROJECT_DIR$/customer.form.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="106">
-          <caret line="50" column="23" lean-forward="false" selection-start-line="50" selection-start-column="23" selection-end-line="50" selection-end-column="23" />
+        <state relative-caret-position="587">
+          <caret line="259" column="46" lean-forward="false" selection-start-line="259" selection-start-column="46" selection-end-line="259" selection-end-column="46" />
           <folding />
         </state>
       </provider>
