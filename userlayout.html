@@ -47,21 +47,15 @@
 
    <i class="material-icons">search</i>
     </div>
+    <h2>Recent</h2>
     <div layout="row" >
-
-
       <md-grid-list
-        md-cols-sm="4" md-cols-md="4" md-cols-gt-md="4"
-        md-row-height-gt-md="1:1" md-row-height="7:5"
+        md-cols-md="4"
+        md-row-height="5:3"
         flex="{{right}}"
         layout-padding>
-        <md-grid-tile class="blue gtile" ng-repeat="c in users | filter: searchKeyword"
-                      md-colspan="1"
-
-        >
+        <md-grid-tile class="blue gtile" ng-repeat="c in users | filter: searchKeyword | orderBy: '-registered ' | limitTo: 8">
           <div layout-fill layout-margin>
-
-
           <md-card>
             <md-card-title  layout-padding>
               <md-card-title-media>
@@ -74,6 +68,7 @@
 
                 <span class="md-subhead">{{c.gender}}</span>
                 <span class="md-subhead">{{c.phone}}</span>
+                <span class="md-subhead">{{c.registered}}</span>
               </md-card-title-text>
 
             </md-card-title>
@@ -82,7 +77,6 @@
               <md-button>Edit</md-button>
             </md-card-actions>
           </md-card>
-
         </div>
         </md-grid-tile>
       </md-grid-list>
@@ -96,6 +90,7 @@
 <script src="bower_components/angular-material/angular-material.min.js"></script>
 <script>
          var app = angular.module('app', ['ngMaterial']);
+
 
          app.controller('ctrl', function($scope, $timeout, $mdSidenav, $http) {
 
