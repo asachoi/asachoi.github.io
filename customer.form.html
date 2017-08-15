@@ -7,7 +7,9 @@
         rel="stylesheet">
   </link>
   <style>
-
+.md-select-placeholder {
+margin-top:-23px;
+}
   </style>
 </head>
 <body ng-app="app" ng-controller="ctrl">
@@ -28,6 +30,7 @@
       <md-card-content>
         <common-fields obj="user">
         </common-fields>
+        <br>
         <md-input-container class="md-block" flex-gt-sm>
           <label>Smoking Status</label>
           <md-select ng-model="user.smokingstatus">
@@ -232,7 +235,7 @@
                 },
                 template : `
 
-                  <div layout="row">
+                  <div layout="row" layout-align="start center">
                     <md-input-container flex=30>
                       <label>Title</label>
                       <md-select ng-model="obj.state">
@@ -245,9 +248,8 @@
                       <label>Full Name</label>
                       <input ng-model="obj.fullname">
                     </md-input-container>
-
                   </div>
-                  <div ="row">
+                  <div ="row" layout-align="start center">
                     <md-input-container flex=20>
                     <label>Gender</label>
                       <md-select ng-model="obj.gender">

@@ -17,8 +17,8 @@
       <file leaf-file-name="customer.form.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/customer.form.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="587">
-              <caret line="259" column="46" lean-forward="false" selection-start-line="259" selection-start-column="46" selection-end-line="259" selection-end-column="46" />
+            <state relative-caret-position="90">
+              <caret line="32" column="12" lean-forward="false" selection-start-line="32" selection-start-column="12" selection-end-line="32" selection-end-column="12" />
               <folding />
             </state>
           </provider>
@@ -109,8 +109,9 @@
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="164" />
+    <option name="y" value="310" />
     <option name="width" value="1364" />
-    <option name="height" value="1040" />
+    <option name="height" value="656" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -431,7 +432,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="164" y="0" width="1364" height="1040" extended-state="0" />
+    <frame x="164" y="310" width="1364" height="656" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -812,8 +813,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/customer.form.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="587">
-          <caret line="259" column="46" lean-forward="false" selection-start-line="259" selection-start-column="46" selection-end-line="259" selection-end-column="46" />
+        <state relative-caret-position="90">
+          <caret line="32" column="12" lean-forward="false" selection-start-line="32" selection-start-column="12" selection-end-line="32" selection-end-column="12" />
           <folding />
         </state>
       </provider>
