@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="f7f08bc0-35e4-440b-9eef-fdd485814374" name="Default" comment="" />
+    <list default="true" id="f7f08bc0-35e4-440b-9eef-fdd485814374" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/poc.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/customer.form.html" afterPath="$PROJECT_DIR$/customer.form.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/layout.html" afterPath="$PROJECT_DIR$/layout.html" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -12,11 +17,41 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="customer.form.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="customer.form.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/customer.form.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="905">
-              <caret line="190" column="47" lean-forward="true" selection-start-line="190" selection-start-column="47" selection-end-line="190" selection-end-column="47" />
+            <state relative-caret-position="2075">
+              <caret line="255" column="49" lean-forward="false" selection-start-line="255" selection-start-column="49" selection-end-line="255" selection-end-column="49" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="layout.bak.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/layout.bak.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="558">
+              <caret line="31" column="0" lean-forward="true" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="layout.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/layout.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="808">
+              <caret line="231" column="7" lean-forward="false" selection-start-line="231" selection-start-column="7" selection-end-line="231" selection-end-column="7" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="poc.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/poc.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="36">
+              <caret line="2" column="22" lean-forward="false" selection-start-line="2" selection-start-column="22" selection-end-line="2" selection-end-column="22" />
               <folding />
             </state>
           </provider>
@@ -100,9 +135,10 @@
         <option value="$PROJECT_DIR$/c3.html" />
         <option value="$PROJECT_DIR$/speechReg.html" />
         <option value="$PROJECT_DIR$/layout.bak.html" />
-        <option value="$PROJECT_DIR$/layout.html" />
         <option value="$PROJECT_DIR$/userlayout.html" />
         <option value="$PROJECT_DIR$/customer.form.html" />
+        <option value="$PROJECT_DIR$/poc.html" />
+        <option value="$PROJECT_DIR$/layout.html" />
       </list>
     </option>
   </component>
@@ -475,13 +511,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/vr.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="14" column="32" lean-forward="false" selection-start-line="14" selection-start-column="32" selection-end-line="14" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/xml.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="396">
@@ -751,20 +780,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/layout.bak.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="11" column="0" lean-forward="false" selection-start-line="11" selection-start-column="0" selection-end-line="15" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/layout.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="9" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/empty.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -782,8 +797,32 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/customer.form.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="905">
-          <caret line="190" column="47" lean-forward="true" selection-start-line="190" selection-start-column="47" selection-end-line="190" selection-end-column="47" />
+        <state relative-caret-position="2075">
+          <caret line="255" column="49" lean-forward="false" selection-start-line="255" selection-start-column="49" selection-end-line="255" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/poc.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="36">
+          <caret line="2" column="22" lean-forward="false" selection-start-line="2" selection-start-column="22" selection-end-line="2" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/layout.bak.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="558">
+          <caret line="31" column="0" lean-forward="true" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/layout.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="808">
+          <caret line="231" column="7" lean-forward="false" selection-start-line="231" selection-start-column="7" selection-end-line="231" selection-end-column="7" />
           <folding />
         </state>
       </provider>

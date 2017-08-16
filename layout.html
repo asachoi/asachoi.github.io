@@ -6,12 +6,147 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
         rel="stylesheet">
   </link>
-<style>
+  <style>
+  .btnClose {
+  transition: all 400ms ease-out 1000ms;
+  }
+            #header {
+             background-color: green;
+             min-height:40px;
+             max-height:40px;
+             padding: 10px;
+          }
+         md-grid-list {
+          margin: 5px;
+         }
+         md-grid-tile {
+          transition: all 400ms ease-out 1000ms;
+         }
+        .mnuItem {
+          min-height:100px;
+          background-color:grey;
+          width:100%;
+          margin: 5px;
+         }
+          .gtile {
+                     background-size:cover;
+                     background-position:center;
+                     background-repeat:no-repeat;
+                     -webkit-background-size:cover;
+                     -moz-background-size:cover;
+                     -o-background-size:cover;
+                     }
+         #sidenav {
+          transition: all 400ms ease-out 400ms;
+          width:25%;
+          }
+          .rotate {
+            /* Safari */
+            -webkit-transform: rotate(90deg);
+            /* Firefox */
+            -moz-transform: rotate(90deg);
+            /* IE */
+            -ms-transform: rotate(90deg);
+            /* Opera */
+            -o-transform: rotate(90deg);
+            transition: all 400ms ease-out 400ms;
+          }
+          md-toolbar {
+             min-height:40px;
+             max-height:40px;
+             padding:10px;
+          }
+          .fabSpeedDialdemoBasicUsage .text-capitalize {
+            text-transform: capitalize; }
+          .fabSpeedDialdemoBasicUsage .md-fab:hover, .fabSpeedDialdemoBasicUsage .md-fab.md-focused {
+            background-color: #000 !important; }
+          .fabSpeedDialdemoBasicUsage .lock-size {
+            min-width: 300px;
+            min-height: 300px;
+            width: 300px;
+            height: 300px;
 
-</style>
+          }
+      </style>
 </head>
 <body ng-app="app" ng-controller="ctrl"  layout="row">
+<section layout="column" flex>
+  <md-toolbar id="header">
+    <span class="lock-size" layout="row" layout-align="end start">
+      <md-fab-speed-dial md-open="demo.isOpen" md-direction="{{demo.selectedDirection}}"
+                         ng-class="demo.selectedMode">
+        <md-fab-trigger>
+          <md-button aria-label="menu" class="md-fab md-primary">
+            <i class="material-icons">menu</i>
+          </md-button>
+        </md-fab-trigger>
 
+        <md-fab-actions>
+          <md-button aria-label="Twitter" class="md-fab md-raised md-mini">
+            <i class="material-icons">face</i>
+          </md-button>
+          <md-button aria-label="Facebook" class="md-fab md-raised md-mini">
+            <i class="material-icons">sync</i>
+          </md-button>
+          <md-button aria-label="Google Hangout" class="md-fab md-raised md-mini">
+            <i class="material-icons">language</i>
+          </md-button>
+          <md-button aria-label="Google Hangout" class="md-fab md-raised md-mini">
+            <i class="material-icons">info</i>
+          </md-button>
+          <md-button aria-label="Google Hangout" class="md-fab md-raised md-mini">
+          <i class="material-icons">security</i>
+          </md-button>
+        </md-fab-actions>
+      </md-fab-speed-dial>
+    </span>
+
+  </md-toolbar>
+  <md-sidenav md-component-id="left"
+              md-whiteframe="4" id="sidenav">
+    <md-toolbar id="header">
+      Tools
+    </md-toolbar>
+
+    <md-content layout-margin>
+      <p>
+        This sidenav is not showing any backdrop, where users can click on it, to close the sidenav.
+      </p>
+      <md-button ng-click="toggleLeft()" class="md-accent">
+        Close Sidenav
+      </md-button>
+
+
+    </md-content>
+  </md-sidenav>
+  <md-content flex >
+
+    <div layout="row">
+      <div flex="{{left}}" style="padding:10px" id="sidenav">
+
+        <md-icon class="btnClose" ng-click="close()" layout-padding>{{btnClose}}</md-icon>
+
+        <div class="mnuItem" ng-repeat="m in menu">
+          <div id="mnuContext" ng-class="mnuText" style="padding:10px">{{m}}</div>
+        </div>
+      </div>
+      <md-grid-list
+        md-cols="{{col}}"
+        md-row-height="1:1"
+        flex="{{right}}">
+        <md-grid-tile class="blue gtile" ng-repeat="c in content"
+                      md-colspan="{{c.cols}}"
+                      style="
+                          background-color: {{c.color}};
+                          background-image: url('{{c.image}}');
+                        "
+
+        >
+        </md-grid-tile>
+      </md-grid-list>
+    </div>
+  </md-content>
+</section>
 <script src="bower_components\angular\angular.min.js"></script>
 <script src="bower_components\angular-animate\angular-animate.min.js"></script>
 <script src="bower_components/angular-aria/angular-aria.min.js"></script>
@@ -19,11 +154,79 @@
 <script src="bower_components/angular-material/angular-material.min.js"></script>
 <script>
          var app = angular.module('app', ['ngMaterial']);
-
          app.controller('ctrl', function($scope, $timeout, $mdSidenav, $http) {
-
+           $scope.col = 3;
+           $scope.left = 25;
+           $scope.right= 75;
+           $scope.btnClose = 'close'
+           $scope.close = function() {
+                if($scope.col == 3) {
+                 $scope.col = 4;
+                 $scope.left = 5;
+                 $scope.mnuText = 'rotate';
+                 $scope.btnClose = 'keyboard_arrow_right';
+                }
+                else {
+                 $scope.col = 3;
+                 $scope.left = 25;
+                 $scope.mnuText = '';
+                 $scope.btnClose = 'close';
+                }
+                $scope.right= 100 - $scope.left;
+           }
+              $scope.menu = ['menu ONE', 'menu TWO','menu THREE']
+             $scope.content = [
+               {
+                 image: 'http://media.istockphoto.com/photos/family-care-picture-id515605078',
+                 cols: 2,
+                 description: 'this is menu one'
+               },
+               {
+                 image: 'http://media.istockphoto.com/photos/expressions-of-true-love-picture-id522126982',
+                 description: 'this is menu two'
+               }
+           ,
+               {
+                 image: 'http://media.istockphoto.com/photos/expressions-of-true-love-picture-id522126982',
+                 description: ''
+               }
+           ,
+               {
+                 image: 'http://media.istockphoto.com/photos/expressions-of-true-love-picture-id522126982',
+                 cols: 2,
+                 description: ''
+               },
+               {
+                 color: 'green',
+                 description: ''
+               },
+               {
+                 color: 'red',
+                 description: ''
+               },
+               {
+                 color: 'red',
+                 description: ''
+               }
+             ]
+             $scope.toggleLeft = buildToggler('left');
+             function buildToggler(componentId) {
+               return function() {
+                 $mdSidenav(componentId).toggle();
+               };
+             }
+             $http.get('https://randomuser.me/api/').then(
+              function(data) {
+                $scope.users = data.results
+                //["0"].picture.large
+              }
+              );
+              $scope.demo = {
+                isOpen:false,
+                selectedMode: 'md-fling',
+                selectedDirection: 'down'
+              }
          });
-
       </script>
 </body>
 </html>
