@@ -17,8 +17,8 @@
       <file leaf-file-name="customer.form.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/customer.form.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="106">
-              <caret line="192" column="58" lean-forward="false" selection-start-line="192" selection-start-column="58" selection-end-line="192" selection-end-column="58" />
+            <state relative-caret-position="72">
+              <caret line="190" column="47" lean-forward="true" selection-start-line="190" selection-start-column="47" selection-end-line="190" selection-end-column="47" />
               <folding />
             </state>
           </provider>
@@ -45,8 +45,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>d3.sel</find>
-      <find>xml</find>
       <find>option</find>
       <find>showGraph</find>
       <find>saving</find>
@@ -75,6 +73,8 @@
       <find>ds.</find>
       <find>'</find>
       <find>spouse</find>
+      <find>layouta</find>
+      <find>layout</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -109,8 +109,8 @@
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="575" />
-    <option name="y" value="425" />
+    <option name="x" value="303" />
+    <option name="y" value="411" />
     <option name="width" value="1364" />
     <option name="height" value="726" />
   </component>
@@ -433,7 +433,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="575" y="425" width="1364" height="726" extended-state="0" />
+    <frame x="303" y="411" width="1364" height="726" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -784,8 +784,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/customer.form.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="106">
-          <caret line="192" column="58" lean-forward="false" selection-start-line="192" selection-start-column="58" selection-end-line="192" selection-end-column="58" />
+        <state relative-caret-position="72">
+          <caret line="190" column="47" lean-forward="true" selection-start-line="190" selection-start-column="47" selection-end-line="190" selection-end-column="47" />
           <folding />
         </state>
       </provider>

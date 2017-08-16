@@ -7,9 +7,9 @@
         rel="stylesheet">
   </link>
   <style>
-         .md-select-placeholder {
-         margin-top:-23px;
-         }
+.md-select {
+margin-top:-23px;
+}
       </style>
 </head>
 <body ng-app="app" ng-controller="ctrl">
@@ -28,7 +28,6 @@
       <md-card-content>
         <common-fields obj="user">
         </common-fields>
-        <br>
         <address obj="user">
         </address>
       </md-card-content>
@@ -189,7 +188,7 @@
 
 
               },
-              template: `    <div layout="row" layout-align="start center">
+              template: `    <div layout="row">
                                 <md-input-container flex=40>
                                    <md-autocomplete
                                     md-selected-item="obj.address.province"
@@ -244,6 +243,7 @@
                   obj :'='
                 },
                 template : `
+                            <md-input-container flex=100>
                              <md-autocomplete
                               md-selected-item="obj.occupation"
                               md-search-text="searchText"
@@ -256,6 +256,8 @@
                               </md-item-template>
 
                             </md-autocomplete>
+                            </input-container>
+
                 `,
                 controller: function($scope) {
                var states   = loadAll();
@@ -265,37 +267,37 @@
               function loadAll() {
 
               return [
-                    {display : "Able Seamen", value : "J01"},
-                    {display : "Account Collector", value : "J02"},
-                    {display : "Accounting Specialist", value : "J03"},
-                    {display : "Adjustment Clerk", value : "J04"},
-                    {display : "Administrative Assistant", value : "J05"},
-                    {display : "Administrative Law Judge", value : "J06"},
-                    {display : "Administrative Service Manager", value : "J07"},
-                    {display : "Admiralty Lawyer", value : "J08"},
-                    {display : "Adult Literacy and Remedial Education Teachers", value : "J09"},
-                    {display : "Advertising Account Executive", value : "J10"},
-                    {display : "Advertising Agency Coordinator", value : "J11"},
-                    {display : "Aeronautical & Aerospace Engineer", value : "J12"},
-                    {display : "Aerospace Engineering Technician", value : "J13"},
-                    {display : "Agricultural Crop Farm Manager", value : "J14"},
-                    {display : "Agricultural Engineer", value : "J15"},
-                    {display : "Agricultural Equipment Operator", value : "J16"},
-                    {display : "Alumni Relations Coordinator", value : "J39"},
-                    {display : "Bindery Machine Tender", value : "J92"},
-                    {display : "Biological Technician", value : "J93"},
-                    {display : "Biology Professor", value : "J94"},
-                    {display : "Biomedical Engineer", value : "J95"},
-                    {display : "Court Reporter", value : "J220"},
-                    {display : "Craft Artist", value : "J221"},
-                    {display : "Crane Operator", value : "J222"},
-                    {display : "Credit Adjuster", value : "J223"},
-                    {display : "Credit Analyst", value : "J224"},
-                    {display : "Credit Reporter", value : "J225"},
-                    {display : "Criminal Investigator (Detective)", value : "J226"},
-                    {display : "Criminal Justice Professor", value : "J227"},
-                    {display : "Criminal Lawyer", value : "J228"},
-                    {display : "Crop Workers Supervisor", value : "J229"},
+                      {display : "Able Seamen", value : "J01"},
+                      {display : "Account Collector", value : "J02"},
+                      {display : "Accounting Specialist", value : "J03"},
+                      {display : "Adjustment Clerk", value : "J04"},
+                      {display : "Administrative Assistant", value : "J05"},
+                      {display : "Administrative Law Judge", value : "J06"},
+                      {display : "Administrative Service Manager", value : "J07"},
+                      {display : "Admiralty Lawyer", value : "J08"},
+                      {display : "Adult Literacy and Remedial Education Teachers", value : "J09"},
+                      {display : "Advertising Account Executive", value : "J10"},
+                      {display : "Advertising Agency Coordinator", value : "J11"},
+                      {display : "Aeronautical & Aerospace Engineer", value : "J12"},
+                      {display : "Aerospace Engineering Technician", value : "J13"},
+                      {display : "Agricultural Crop Farm Manager", value : "J14"},
+                      {display : "Agricultural Engineer", value : "J15"},
+                      {display : "Agricultural Equipment Operator", value : "J16"},
+                      {display : "Alumni Relations Coordinator", value : "J39"},
+                      {display : "Bindery Machine Tender", value : "J92"},
+                      {display : "Biological Technician", value : "J93"},
+                      {display : "Biology Professor", value : "J94"},
+                      {display : "Biomedical Engineer", value : "J95"},
+                      {display : "Court Reporter", value : "J220"},
+                      {display : "Craft Artist", value : "J221"},
+                      {display : "Crane Operator", value : "J222"},
+                      {display : "Credit Adjuster", value : "J223"},
+                      {display : "Credit Analyst", value : "J224"},
+                      {display : "Credit Reporter", value : "J225"},
+                      {display : "Criminal Investigator (Detective)", value : "J226"},
+                      {display : "Criminal Justice Professor", value : "J227"},
+                      {display : "Criminal Lawyer", value : "J228"},
+                      {display : "Crop Workers Supervisor", value : "J229"},
 
 
                       ]
@@ -315,7 +317,7 @@
                   obj: '='
                 },
                 template : `
-                  <div layout="row" layout-align="start center">
+                  <div layout="row">
                     <md-input-container flex=30>
                       <label>Title</label>
                       <md-select ng-model="obj.state">
@@ -324,15 +326,16 @@
                         <md-option  value="MISS">Miss</md-option>
                       </md-select>
                     </md-input-container>
-                    <md-input-container flex=70>
+                    <md-input-container flex=60>
                       <label>Full Name</label>
                       <input ng-model="obj.fullname">
                     </md-input-container>
                   </div>
-                  <div ="row" layout-align="start center">
+                  <div layout="row">
                     <md-input-container flex=20>
                     <label>Gender</label>
-                      <md-select ng-model="obj.gender">
+                      <md-select ng-model="obj.gender"
+                      placeholder="Gender">
                         <md-option  value="Male">Male</md-option>
                         <md-option  value="Female">Female</md-option>
                       </md-select>
@@ -346,8 +349,11 @@
                       <md-datepicker ng-model="obj.dob" md-current-view="year" ng-model-options="{ timezone: 'hongkong' }">
                       </md-datepicker>
                     </md-input-container>
+                  </div>
+                  <div layout="row">
                     <occupation obj="obj"></occupation>
                   </div>
+
                 `
             };
          });
