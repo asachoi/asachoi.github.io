@@ -35,15 +35,13 @@ margin-top:-23px;
             <label>Email</label>
             <input type="email" name="email" ng-model="user.Email"
                    minlength="10" maxlength="100" ng-pattern="/^.+@.+\..+$/" />
-            <div ng-messages=""user.Email.$error">
-              <div ng-message="required">This is required.</div>
-            </div>
+
           </md-input-container>
           <md-input-container flex="50">
             <label>Phone number</label>
             <input required type="phone" name="phone" ng-model="user.phone"
                    minlength="8" />
-            <div ng-messages=""user.phone.$error">
+            <div ng-messages="user.phone.$error">
                 <div ng-message="required">This is required.</div>
             </div>
           </md-input-container>
