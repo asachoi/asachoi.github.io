@@ -22,19 +22,57 @@ margin-top:-23px;
   </div>
   <div flex="70">
     <md-card>
-      <md-card-title>
-        Customer
-      </md-card-title>
       <md-card-actions layout="row" layout-align="end center">
+        <md-card-title><h2>Customer</h2></md-card-title>
         <md-button>Save</md-button>
         <md-button>Cancel</md-button>
       </md-card-actions>
-
       <md-card-content>
         <common-fields obj="user">
         </common-fields>
+        <div layout="row">
+          <md-input-container flex="50">
+            <label>Email</label>
+            <input type="email" name="clientEmail" ng-model="user.Email"
+                   minlength="10" maxlength="100" ng-pattern="/^.+@.+\..+$/" />
+            <div ng-messages=""user.Email.$error">
+              <div ng-message="required">This is required.</div>
+            </div>
+          </md-input-container>
+          <md-input-container flex="50">
+            <label>Phone number</label>
+            <input required type="phone" name="phone" ng-model="user.phone"
+                   minlength="8" />
+            <div ng-messages=""user.phone.$error">
+                <div ng-message="required">This is required.</div>
+            </div>
+          </md-input-container>
+        </div>
+        <div layout="row">
+          <md-input-container flex="50">
+            <label>Home number</label>
+            <input type="phone" name="homephone" ng-model="user.homephone"
+                   minlength="8" />
+
+          </md-input-container>
+          <md-input-container flex="50">
+            <label>Office number</label>
+            <input  type="phone" name="office" ng-model="user.officephone"
+                   minlength="8" />
+
+          </md-input-container>
+        </div>
+
+        <div layout="row">
+        <md-input-container flex="50">
+          <label>Office address</label>
+          <input type="email" name="clientEmail" ng-model="user.Email"
+                 minlength="10" maxlength="100" ng-pattern="/^.+@.+\..+$/" />
+        </md-input-container>
+        </div>
         <address obj="user">
         </address>
+
       </md-card-content>
     </md-card>
     <md-card>
@@ -77,7 +115,6 @@ margin-top:-23px;
       </md-card-content>
     </md-card>
   </div>
-  {{debug}}
 </div>
 <script src="bower_components\angular\angular.min.js"></script>
 <script src="bower_components\angular-animate\angular-animate.min.js"></script>
@@ -235,8 +272,7 @@ margin-top:-23px;
                 scope : {
                   obj :'='
                 },
-                template : `
-                            <md-input-container flex=100>
+                template : `<md-input-container flex="100">
                              <md-autocomplete
                               md-selected-item="obj.occupation"
                               md-search-text="searchText"
@@ -248,9 +284,8 @@ margin-top:-23px;
                                 <span md-highlight-text="searchText" md-highlight-flags="^i">{{item.display}}</span>
                               </md-item-template>
                             </md-autocomplete>
-                            </input-container>
-
-                `,
+                            </md-input-container>
+                            `,
                 controller: function($scope, $http) {
                    var states   = {}
 
@@ -287,17 +322,23 @@ margin-top:-23px;
                     </md-input-container>
                     <md-input-container flex=60>
                       <label>Full Name</label>
-                      <input ng-model="obj.fullname">
-                    </md-input-container>
+                      <input ng-model="obj.fullname" required>
+                        <div ng-messages=""obj.fullname.$error">
+                          <div ng-message="required">This is required.</div>
+                        </div>
+                      </md-input-container>
                   </div>
                   <div layout="row">
                     <md-input-container flex=20>
                     <label>Gender</label>
                       <md-select ng-model="obj.gender"
-                      placeholder="Gender">
+                      placeholder="Gender" required>
                         <md-option  value="Male">Male</md-option>
                         <md-option  value="Female">Female</md-option>
                       </md-select>
+                        <div ng-messages=""obj.gender.$error">
+                          <div ng-message="required">This is required.</div>
+                        </div>
                     </md-input-container>
                     <md-input-container flex=40>
                       <label>Age</label>
