@@ -164,8 +164,71 @@ margin-top:-23px;
 
 
                 var provinces = [
-                            {display : "P1", value : "1"},
-                            {display : "P2", value : "2"},
+                    {value: 0, display:"Thành phố City"},
+                    {value: 1, display:"Tỉnh An Giang"},
+                    {value: 2, display:"Tỉnh Bà Rịa-Vũng Tàu"},
+                    {value: 3, display:"Tỉnh Bắc Giang"},
+                    {value: 4, display:"Tỉnh Bắc Kạn"},
+                    {value: 5, display:"Tỉnh Bạc Liêu"},
+                    {value: 6, display:"Tỉnh Bắc Ninh"},
+                    {value: 7, display:"Tỉnh Bến Tre"},
+                    {value: 8, display:"Tỉnh Bình Định"},
+                    {value: 9, display:"Tỉnh Bình Dương"},
+                    {value: 10, display:"Tỉnh Bình Phước"},
+                    {value: 11, display:"Tỉnh Bình Thuận"},
+                    {value: 12, display:"Tỉnh Cà Mau"},
+                    {value: 13, display:"Thành phố Cần Thơ"},
+                    {value: 14, display:"Tỉnh Cao Bằng"},
+                    {value: 15, display:"Thành phố Đà Nẵng"},
+                    {value: 16, display:"Tỉnh Đắk Lắk"},
+                    {value: 17, display:"Tỉnh Đắk Nông"},
+                    {value: 18, display:"Tỉnh Điện Biên"},
+                    {value: 19, display:"Tỉnh Đồng Nai"},
+                    {value: 20, display:"Tỉnh Đồng Tháp"},
+                    {value: 21, display:"Tỉnh Gia Lai"},
+                    {value: 22, display:"Tỉnh Hà Giang"},
+                    {value: 23, display:"Tỉnh Hà Nam"},
+                    {value: 24, display:"Thành phố Hà Nội"},
+                    {value: 25, display:"Tỉnh Hà Tĩnh"},
+                    {value: 26, display:"Tỉnh Hải Dương"},
+                    {value: 27, display:"Thành phố Hải Phòng"},
+                    {value: 28, display:"Tỉnh Hậu Giang"},
+                    {value: 29, display:"Thành phố Hồ Chí Minh"},
+                    {value: 30, display:"Tỉnh Hòa Bình"},
+                    {value: 31, display:"Tỉnh Hưng Yên"},
+                    {value: 32, display:"Tỉnh Khánh Hòa"},
+                    {value: 33, display:"Tỉnh Kiên Giang"},
+                    {value: 34, display:"Tỉnh Kon Tum"},
+                    {value: 35, display:"Tỉnh Lai Châu"},
+                    {value: 36, display:"Tỉnh Lâm Đồng"},
+                    {value: 37, display:"Tỉnh Lạng Sơn"},
+                    {value: 38, display:"Tỉnh Lào Cai"},
+                    {value: 39, display:"Tỉnh Long An"},
+                    {value: 40, display:"Tỉnh Nam Định"},
+                    {value: 41, display:"Tỉnh Nghệ An"},
+                    {value: 42, display:"Tỉnh Ninh Bình"},
+                    {value: 43, display:"Tỉnh Ninh Thuận"},
+                    {value: 44, display:"Tỉnh Phú Thọ"},
+                    {value: 45, display:"Tỉnh Phú Yên"},
+                    {value: 46, display:"Tỉnh Quảng Bình"},
+                    {value: 47, display:"Tỉnh Quảng Nam"},
+                    {value: 48, display:"Tỉnh Quảng Ngãi"},
+                    {value: 49, display:"Tỉnh Quảng Ninh"},
+                    {value: 50, display:"Tỉnh Quảng Trị"},
+                    {value: 51, display:"Tỉnh Sóc Trăng"},
+                    {value: 52, display:"Tỉnh Sơn La"},
+                    {value: 53, display:"Tỉnh Tây Ninh"},
+                    {value: 54, display:"Tỉnh Thái Bình"},
+                    {value: 55, display:"Tỉnh Thái Nguyên"},
+                    {value: 56, display:"Tỉnh Thanh Hóa"},
+                    {value: 57, display:"Tỉnh Thừa Thiên Huế"},
+                    {value: 58, display:"Tỉnh Tiền Giang"},
+                    {value: 59, display:"Tỉnh Trà Vinh"},
+                    {value: 60, display:"Tỉnh Tuyên Quang"},
+                    {value: 61, display:"Tỉnh Vĩnh Long"},
+                    {value: 62, display:"Tỉnh Vĩnh Phúc"},
+                    {value: 63, display:"Tỉnh Yên Bái"},
+
                         ]
 
                 var districts = [
@@ -179,15 +242,15 @@ margin-top:-23px;
 
 
                 $scope.querySearch1 =function(query) {
-                  var results = query ? provinces.filter( s => s.display.toLowerCase().indexOf(query.toLowerCase()) === 0 ) : states
+                  var results = query ? provinces.filter( s => s.display.toLowerCase().indexOf(query.toLowerCase()) === 0 ) : provinces
                   return results;
                 }
                 $scope.querySearch2 =function(query) {
-                  var results = query ? provinces.filter( s => s.display.toLowerCase().indexOf(query.toLowerCase()) === 0 ) : states
+                  var results = query ? provinces.filter( s => s.display.toLowerCase().indexOf(query.toLowerCase()) === 0 ) : provinces
                   return results;
                 }
                 $scope.querySearch3 =function(query) {
-                  var results = query ? provinces.filter( s => s.display.toLowerCase().indexOf(query.toLowerCase()) === 0 ) : states
+                  var results = query ? provinces.filter( s => s.display.toLowerCase().indexOf(query.toLowerCase()) === 0 ) : provinces
                   return results;
                 }
 
