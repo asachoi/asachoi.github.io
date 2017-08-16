@@ -33,7 +33,7 @@ margin-top:-23px;
         <div layout="row">
           <md-input-container flex="50">
             <label>Email</label>
-            <input type="email" name="clientEmail" ng-model="user.Email"
+            <input type="email" name="email" ng-model="user.Email"
                    minlength="10" maxlength="100" ng-pattern="/^.+@.+\..+$/" />
             <div ng-messages=""user.Email.$error">
               <div ng-message="required">This is required.</div>
@@ -202,18 +202,18 @@ margin-top:-23px;
                     });
 
                     $scope.querySearch1 =function(query) {
-                      var results = query ? addressDB.provinces.filter( s => s.display.toLowerCase().indexOf(query.toLowerCase()) === 0 ) : addressDB.provinces
+                      var results = query ? addressDB.provinces.filter( s => s.display.toLowerCase().indexOf(query.toLowerCase()) > -1 ) : addressDB.provinces
                       return results;
                     }
                     $scope.querySearch2 =function(query, PROV_ID) {
                       var _districts = addressDB.districts.filter(s => s.PROV_ID === PROV_ID)
 
-                      var results = query ? _districts.filter( s => s.display.toLowerCase().indexOf(query.toLowerCase()) === 0 ) : _districts
+                      var results = query ? _districts.filter( s => s.display.toLowerCase().indexOf(query.toLowerCase()) > -1 ) : _districts
                       return results;
                     }
                     $scope.querySearch3 =function(query, PROV_ID, DIST_ID) {
                       var _wards = addressDB.wards.filter(s => s.PROV_ID === PROV_ID && s.DIST_ID === DIST_ID)
-                      var results = query ? _wards.filter( s => s.display.toLowerCase().indexOf(query.toLowerCase()) === 0 ) : _wards
+                      var results = query ? _wards.filter( s => s.display.toLowerCase().indexOf(query.toLowerCase()) > -1 ) : _wards
                       return results;
                     }
 
@@ -298,7 +298,7 @@ margin-top:-23px;
                     });
 
                     $scope.querySearch =function(query) {
-                      var results = query ? states.filter( s => s.display.toLowerCase().indexOf(query.toLowerCase()) === 0 ) : states
+                      var results = query ? states.filter( s => s.display.toLowerCase().indexOf(query.toLowerCase()) > -1 ) : states
                       return results;
                     }
                 }
@@ -320,7 +320,7 @@ margin-top:-23px;
                         <md-option  value="MISS">Miss</md-option>
                       </md-select>
                     </md-input-container>
-                    <md-input-container flex=60>
+                    <md-input-container flex=70>
                       <label>Full Name</label>
                       <input ng-model="obj.fullname" required>
                         <div ng-messages=""obj.fullname.$error">
