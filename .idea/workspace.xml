@@ -2,6 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f7f08bc0-35e4-440b-9eef-fdd485814374" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/addressDB.json" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/occupationDB.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/customer.form.html" afterPath="$PROJECT_DIR$/customer.form.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -14,11 +17,21 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="addressDB.json" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/addressDB.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="491">
+              <caret line="72603" column="30" lean-forward="true" selection-start-line="72603" selection-start-column="30" selection-end-line="72603" selection-end-column="30" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="customer.form.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/customer.form.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="12429" column="87" lean-forward="false" selection-start-line="12429" selection-start-column="87" selection-end-line="12429" selection-end-column="87" />
+            <state relative-caret-position="534">
+              <caret line="180" column="21" lean-forward="false" selection-start-line="180" selection-start-column="21" selection-end-line="180" selection-end-column="21" />
               <folding />
             </state>
           </provider>
@@ -49,6 +62,16 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="808">
               <caret line="231" column="7" lean-forward="false" selection-start-line="231" selection-start-column="7" selection-end-line="231" selection-end-column="7" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="occupationDB.json" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/occupationDB.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="612">
+              <caret line="34" column="0" lean-forward="true" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -95,9 +118,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>option</find>
-      <find>showGraph</find>
-      <find>saving</find>
       <find>init</find>
       <find>redra</find>
       <find>total wi</find>
@@ -125,6 +145,9 @@
       <find>spouse</find>
       <find>layouta</find>
       <find>layout</find>
+      <find>.js</find>
+      <find>display</find>
+      <find>json</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -156,6 +179,8 @@
         <option value="$PROJECT_DIR$/userlayout.html" />
         <option value="$PROJECT_DIR$/userprofile.form.html" />
         <option value="$PROJECT_DIR$/poc.html" />
+        <option value="$PROJECT_DIR$/occupationDB.json" />
+        <option value="$PROJECT_DIR$/addressDB.json" />
         <option value="$PROJECT_DIR$/customer.form.html" />
       </list>
     </option>
@@ -529,20 +554,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/xml2json.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="468">
-          <caret line="26" column="58" lean-forward="false" selection-start-line="26" selection-start-column="58" selection-end-line="26" selection-end-column="58" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/c3.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1872">
-          <caret line="104" column="1" lean-forward="false" selection-start-line="104" selection-start-column="1" selection-end-line="104" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/bower_components/xml2json/.bower.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="72">
@@ -839,10 +850,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/occupationDB.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="612">
+          <caret line="34" column="0" lean-forward="true" selection-start-line="34" selection-start-column="0" selection-end-line="34" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/addressDB.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="491">
+          <caret line="72603" column="30" lean-forward="true" selection-start-line="72603" selection-start-column="30" selection-end-line="72603" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/customer.form.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="12429" column="87" lean-forward="false" selection-start-line="12429" selection-start-column="87" selection-end-line="12429" selection-end-column="87" />
+        <state relative-caret-position="534">
+          <caret line="180" column="21" lean-forward="false" selection-start-line="180" selection-start-column="21" selection-end-line="180" selection-end-column="21" />
           <folding />
         </state>
       </provider>
