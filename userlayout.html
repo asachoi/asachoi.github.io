@@ -41,11 +41,9 @@
   <md-content flex >
 
     <div layout="col">
-
       <md-button ng-click="orderBy='-registered'">Recent</md-button>
       <md-button ng-click="orderBy='name.first'">Name</md-button>
-
-        <span id="search" flex="70" layout-align="end end">
+        <span id="search" flex="70">
           <md-input-container>
             <label>Search</label>
             <input ng-model="searchKeyword">
@@ -55,17 +53,13 @@
         </span>
     </div>
     <div layout="row" >
-
-
       <md-grid-list
-        md-cols-md="4"
+        md-cols="4"
         md-row-height="5:4"
         flex="100"
         layout-padding>
-
         <md-grid-tile class="blue gtile" ng-repeat="c in users | filter: searchKeyword | orderBy: getOrderBy() | limitTo: 8"
                       md-colspan="1"
-
         >
           <div layout-fill layout-margin>
           <md-card>

@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f7f08bc0-35e4-440b-9eef-fdd485814374" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/poc.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/customer.form.html" afterPath="$PROJECT_DIR$/customer.form.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/layout.html" afterPath="$PROJECT_DIR$/layout.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/userlayout.html" afterPath="$PROJECT_DIR$/userlayout.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -37,7 +34,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="layout.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="layout.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/layout.html">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="808">
@@ -57,11 +54,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="userlayout.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="userlayout.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/userlayout.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="504">
-              <caret line="74" column="49" lean-forward="false" selection-start-line="74" selection-start-column="49" selection-end-line="74" selection-end-column="49" />
+            <state relative-caret-position="486">
+              <caret line="72" column="75" lean-forward="true" selection-start-line="72" selection-start-column="75" selection-end-line="72" selection-end-column="75" />
               <folding />
             </state>
           </provider>
@@ -135,10 +132,10 @@
         <option value="$PROJECT_DIR$/c3.html" />
         <option value="$PROJECT_DIR$/speechReg.html" />
         <option value="$PROJECT_DIR$/layout.bak.html" />
-        <option value="$PROJECT_DIR$/userlayout.html" />
         <option value="$PROJECT_DIR$/customer.form.html" />
         <option value="$PROJECT_DIR$/poc.html" />
         <option value="$PROJECT_DIR$/layout.html" />
+        <option value="$PROJECT_DIR$/userlayout.html" />
       </list>
     </option>
   </component>
@@ -787,14 +784,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/userlayout.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="504">
-          <caret line="74" column="49" lean-forward="false" selection-start-line="74" selection-start-column="49" selection-end-line="74" selection-end-column="49" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/customer.form.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2075">
@@ -823,6 +812,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="808">
           <caret line="231" column="7" lean-forward="false" selection-start-line="231" selection-start-column="7" selection-end-line="231" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/userlayout.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="486">
+          <caret line="72" column="75" lean-forward="true" selection-start-line="72" selection-start-column="75" selection-end-line="72" selection-end-column="75" />
           <folding />
         </state>
       </provider>
