@@ -1,0 +1,124 @@
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Angular Material style sheet -->
+  <link rel="stylesheet" href="bower_components/angular-material/angular-material.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+        rel="stylesheet">
+  </link>
+  <style>
+
+         md-grid-tile {
+          transition: all 400ms;
+          margin:5px;
+         }
+          #search {
+            padding:10px;
+
+          }
+
+          #header {
+             background-color: green;
+             min-height:40px;
+             max-height:40px;
+             padding: 10px;
+          }
+
+          md-card {
+            min-height:160px;
+            min-width: 90%;
+          }
+
+      </style>
+</head>
+<body ng-app="app" ng-controller="ctrl"  layout="row" >
+<section layout="column" flex>
+
+  <md-toolbar  md-scroll-shrink="true" id="header">
+    header
+  </md-toolbar>
+
+  <md-content flex >
+
+    <div layout="col">
+      <md-button ng-click="orderBy='-registered'">Recent</md-button>
+      <md-button ng-click="orderBy='name.first'">Name</md-button>
+        <span id="search" flex="70">
+          <md-input-container>
+            <label>Search</label>
+            <input ng-model="searchKeyword">
+          </md-input-container>
+
+          <i class="material-icons">search</i>
+        </span>
+    </div>
+    <div layout="row" >
+      <md-grid-list
+        md-cols="4"
+        md-row-height="5:4"
+        flex="100"
+        layout-padding>
+        <md-grid-tile class="blue gtile" ng-repeat="c in users | filter: searchKeyword | orderBy: getOrderBy() | limitTo: 8"
+                      md-colspan="1"
+        >
+          <div layout-fill layout-margin>
+          <md-card>
+            <md-card-title  layout-padding>
+              <md-card-title-media>
+                <div class="md-media-sm card-media">
+                  <img src="{{c.picture.large}}">
+                </div>
+              </md-card-title-media>
+              <md-card-title-text>
+                <md-truncate>{{c.name.first}} {{c.name.last}}</md-truncate>
+
+                <span class="md-subhead">{{c.gender}}</span>
+                <span class="md-subhead">{{c.phone}}</span>
+                <span class="md-subhead">{{c.registered}}</span>
+              </md-card-title-text>
+
+            </md-card-title>
+            <md-card-actions layout="row" layout-align="end center">
+              <md-button>Start</md-button>
+              <md-button>Edit</md-button>
+            </md-card-actions>
+          </md-card>
+
+        </div>
+        </md-grid-tile>
+      </md-grid-list>
+    </div>
+  </md-content>
+</section>
+<script src="bower_components\angular\angular.min.js"></script>
+<script src="bower_components\angular-animate\angular-animate.min.js"></script>
+<script src="bower_components/angular-aria/angular-aria.min.js"></script>
+<script src="bower_components/angular-messages/angular-messages.min.js"></script>
+<script src="bower_components/angular-material/angular-material.min.js"></script>
+<script>
+         var app = angular.module('app', ['ngMaterial']);
+
+         app.controller('ctrl', function($scope, $timeout, $mdSidenav, $http) {
+
+            $scope.orderBy = '-registered'
+
+           $http.get('https://randomuser.me/api/?results=32').then(
+            function(data) {
+
+              $scope.users = data.data.results
+              console.debug($scope.users)
+              //["0"].picture.large
+            }
+            );
+
+
+            $scope.getOrderBy = function() {
+             return $scope.orderBy
+            }
+
+
+         });
+
+      </script>
+</body>
+</html>

@@ -49,6 +49,7 @@
                     <textarea ng-model="user.biography" md-maxlength="150" rows="5" md-select-on-focus></textarea>
                   </md-input-container>
                 </div>
+
                 <div>
                   <h3>Awards and Honors</h3>
                   <img src="http://boysfin.ca/wp-content/uploads/MDRT-logoR.jpg" width="100px">
@@ -69,7 +70,7 @@
 <script data-require="moment.js@*" data-semver="2.8.3" src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.3/moment.min.js"></script>
 <script data-require="moment-timezone-with-data@*" data-semver="0.2.5" src="http://momentjs.com/downloads/moment-timezone-with-data.min.js"></script>
 <script>
-         var app = angular.module('app', ['ngMaterial']);
+         var app = angular.module('app', ['ngMaterial','ngMessages']);
 
          app.controller('ctrl', function($scope) {
             $scope.user = {
