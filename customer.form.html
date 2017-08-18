@@ -214,14 +214,8 @@
 
               },
               template: `
-              <div layout="row">
-                  <md-input-container flex=100>
-                    <label>Address</label>
-                    <textarea ng-model="obj.address.detail" md-maxlength="150" rows="5" md-select-on-focus></textarea>
-                  </md-input-container>
-              </div>
-              <div layout="row">
-                                <md-input-container flex=40>
+                        <div layout=row>
+                               <md-input-container flex=40>
                                    <md-autocomplete
                                     md-selected-item="obj.address.province"
                                     md-search-text="searchText1"
@@ -261,6 +255,27 @@
                                       <span md-highlight-text="searchText3" md-highlight-flags="^i">{{item.display}}</span>
                                     </md-item-template>
                                    </md-autocomplete>
+                                </md-input-container>
+                              </div>
+                              <div layout="row">
+                                <md-input-container flex=60>
+                                  <label>Home Number</label>
+                                  <input ng-model="obj.address.homenumber" required>
+
+                                  </md-input-container>
+                                </md-input-container>
+                                <md-input-container flex=40>
+                                  <label>zip code</label>
+                                  <input ng-model="obj.address.zipcode" required>
+
+                                  </md-input-container>
+                              </div>
+                              <div layout="row">
+                                <md-input-container flex=60>
+                                  <label>Phone Number</label>
+                                  <input ng-model="obj.address.phonenumber" required>
+
+                                  </md-input-container>
                                 </md-input-container>
                               </div>
 
