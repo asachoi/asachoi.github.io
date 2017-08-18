@@ -1,0 +1,40 @@
+<div layout="row">
+  <md-input-container flex=30>
+    <label>Title</label>
+    <md-select ng-model="obj.state">
+      <md-option  value="MR">Mr</md-option>
+      <md-option  value="MS">Ms</md-option>
+      <md-option  value="MISS">Miss</md-option>
+    </md-select>
+  </md-input-container>
+  <md-input-container flex=70>
+    <label>Full Name</label>
+    <input ng-model="obj.fullname" required>
+    <div ng-messages=""obj.fullname.$error">
+    <div ng-message="required">This is required.</div>
+</div>
+</md-input-container>
+</div>
+<div layout="row">
+  <md-input-container flex=20>
+    <label>Gender</label>
+    <md-select ng-model="obj.gender"
+               placeholder="Gender" required>
+      <md-option  value="Male">Male</md-option>
+      <md-option  value="Female">Female</md-option>
+    </md-select>
+    <div ng-messages=""obj.gender.$error">
+    <div ng-message="required">This is required.</div>
+</div>
+</md-input-container>
+<md-input-container flex=20>
+  <label>Age</label>
+  <input ng-model="obj.age">
+</md-input-container>
+<md-input-container flex=40>
+  <label>Date of Birth</label>
+  <md-datepicker ng-model="obj.dob" md-current-view="year" ng-model-options="{ timezone: 'hongkong' }">
+  </md-datepicker>
+</md-input-container>
+</div>
+<occupation obj="obj"></occupation>

@@ -1,0 +1,17 @@
+<div layout="row">
+  <md-input-container flex="50">
+    <label>Email</label>
+    <input type="email" name="email" ng-model="user.Email"
+           minlength="10" maxlength="100" ng-pattern="/^.+@.+\..+$/"
+    />
+    <div ng-messages="user.Email.$error">
+      <div ng-message="required">This is required.</div>
+    </div>
+  </md-input-container>
+</div>
+<h3>Home</h3>
+<address obj="user.home">
+</address>
+<h3>Office</h3>
+<address obj="user.office">
+</address>
