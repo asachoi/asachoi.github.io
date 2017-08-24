@@ -1,0 +1,94 @@
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Angular Material style sheet -->
+  <link rel="stylesheet" href="bower_components/angular-material/angular-material.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+        rel="stylesheet">
+  </link>
+  <style>
+    .tileCommon {
+       margin: 5px;
+       transition:width 0.5s, height 0.5s;
+       overflow: hidden;
+       opacity: .2;
+    }
+
+    .tile {
+       background-color: blue;
+
+       width:50px;
+       height:100px;
+       background-image: url("http://media.istockphoto.com/photos/textured-black-paint-background-picture-id534129916")
+    }
+
+    .tileHead {
+       background-color: red;
+       width: 600px;
+       height:100px;
+       background-image: url("http://media.istockphoto.com/photos/textured-rainbow-painted-background-picture-id534129872")
+    }
+
+    .active {
+      width: 420px;
+      opacity: 1;
+    }
+
+    .activeHead {
+      height: 120px;
+      opacity: 1;
+    }
+
+
+
+
+
+  </style>
+</head>
+<body ng-app="app" ng-controller="ctrl"  layout="row" >
+<section layout="column" flex>
+
+  <div layout="column">
+    <div class="tileCommon tileHead" ng-repeat="c in [{t:0,b:10},{t:10,b:20},{t:20,b:30},{t:30, b:40}]" ng-click="updateSel($index)"
+         ng-class="getFlex($index)+'Head'"
+    >
+
+
+    </div>
+  </div>
+
+  <div layout="row" >
+    <div class=" tileCommon tile" ng-repeat="c in [1,2,3,4]" ng-click="updateSel($index)"
+         ng-class="getFlex($index)"
+    >
+      Content
+    </div>
+  </div>
+
+</section>
+<script src="bower_components\angular\angular.min.js"></script>
+<script src="bower_components\angular-animate\angular-animate.min.js"></script>
+<script src="bower_components/angular-aria/angular-aria.min.js"></script>
+<script src="bower_components/angular-messages/angular-messages.min.js"></script>
+<script src="bower_components/angular-material/angular-material.min.js"></script>
+<script>
+         var app = angular.module('app', ['ngMaterial']);
+
+         app.controller('ctrl', function($scope, $timeout, $mdSidenav, $http) {
+
+            $scope.selectedIndex = 1
+
+            $scope.updateSel = function(index) {
+            $scope.selectedIndex = index
+            }
+
+            $scope.getFlex = function(index) {
+              return (index == $scope.selectedIndex)? 'active' : ''
+            }
+
+
+         });
+
+      </script>
+</body>
+</html>
