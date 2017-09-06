@@ -1,0 +1,356 @@
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Angular Material style sheet -->
+  <link rel="stylesheet" href="bower_components/angular-material/angular-material.min.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+        rel="stylesheet">
+  </link>
+
+</head>
+<body ng-app="app" ng-controller="ctrl"  >
+
+
+<md-content layout="column">
+  <div layout="row">
+    <div
+      ng-repeat="p in persona"
+      class="box"
+    >
+      <div ng-click="$parent.personaSelected = p">
+        {{p.name}}
+      </div>
+    </div>
+  </div>
+  <div layout="row">
+      <div
+          ng-repeat="item in models.fromList"
+          dnd-list="models.fromList"
+          dnd-draggable="item"
+          dnd-effect-allowed="all"
+          dnd-selected="models.selected = item"
+          dnd-drop="false"
+          dnd-disable-if="isDropped(item.label)"
+
+      >
+        <flippy
+          class="fancy"
+          ng-click="flip()"
+          flip-duration="800"
+          timing-function="ease-in-out"
+        >
+          <flippy-front>
+            <md-card
+              ng-class="{drop:isDropped(item.label), 'outline': inPersona(item.label)}"
+            >
+              <md-card-title>
+                <md-card-title-text>
+                  <span class="md-headline">{{item.label}}</span>
+                  <span class="md-subhead"><i class="material-icons">{{item.label}}</i></span>
+                </md-card-title-text>
+                <md-card-title-media>
+                  <div class="md-media-sm card-media"></div>
+                </md-card-title-media>
+              </md-card-title>
+              <md-card-actions layout="row" layout-align="end center">
+                <md-button>Action 1</md-button>
+                <md-button>Action 2</md-button>
+              </md-card-actions>
+            </md-card>
+          </flippy-front>
+          <flippy-back>
+            <img src="http://placehold.it/300&text=Aaaaaand the back" alt="the back" />
+          </flippy-back>
+
+        </flippy>
+      </div>
+    </div>
+
+
+  <div layout="row" dnd-list="models.toList" style="background-color:green">
+    <div>
+      Remove
+    </div>
+    <div ng-repeat="item in models.toList"
+         dnd-draggable="item"
+         dnd-moved="models.toList.splice($index, 1)"
+         dnd-effect-allowed="all"
+         dnd-selected="models.selected = item"
+         style="background-color:blue"
+         class="box"
+    >
+        <div>
+          <i class="material-icons">{{item.label}}</i>
+        </div>
+    </div>
+    <div ng-repeat="n in placeHolder() track by $index"
+         style="background-color:yellow"
+         class="box"
+    >
+      <div>
+        {{n}}
+      </div>
+    </div>
+  </div>
+  </div>
+<br>
+  {{models.fromList}}
+  <br>
+  {{models.toList}}
+
+</md-content>
+
+
+<style>
+.drop {
+  background-color: grey;
+}
+.outline {
+  border-style: solid;
+
+}
+flippy {
+  float: left;
+  -webkit-perspective: 600px;
+  -moz-perspective: 600px;
+  -ms-perspective: 600px;
+  perspective: 600px;
+}
+flippy-front {
+  position: absolute;
+  z-index: 900;
+  width: inherit;
+  height: inherit;
+  -webkit-transform: rotate3d(0, 0, 0, 0deg);
+  -moz-transform: rotate3d(0, 0, 0, 0deg);
+  -ms-transform: rotate3d(0, 0, 0, 0deg);
+  transform: rotate3d(0, 0, 0, 0deg);
+  -webkit-transform-style: preserve-3d;
+  -moz-transform-style: preserve-3d;
+  -ms-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -ms-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+flippy-back {
+  position: absolute;
+  z-index: 800;
+  width: inherit;
+  height: inherit;
+  -webkit-transform: rotate3d(0, 1, 0, -180deg);
+  -moz-transform: rotate3d(0, 1, 0, -180deg);
+  -ms-transform: rotate3d(0, 1, 0, -180deg);
+  transform: rotate3d(0, 1, 0, -180deg);
+  -webkit-transform-style: preserve-3d;
+  -moz-transform-style: preserve-3d;
+  -ms-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -ms-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+flippy.flipped flippy-front {
+  z-index: 900;
+  -webkit-transform: rotate3d(0, 1, 0, 180deg);
+  -moz-transform: rotate3d(0, 1, 0, 180deg);
+  -ms-transform: rotate3d(0, 1, 0, 180deg);
+  transform: rotate3d(0, 1, 0, 180deg);
+}
+flippy.flipped flippy-back {
+  z-index: 1000;
+  -webkit-transform: rotate3d(0, 0, 0, 0deg);
+  -moz-transform: rotate3d(0, 0, 0, 0deg);
+  -ms-transform: rotate3d(0, 0, 0, 0deg);
+  transform: rotate3d(0, 0, 0, 0deg);
+}
+
+flippy.fancy {
+  float: left;
+
+  position: relative;
+
+  width: 250px;
+  height: 250px;
+}
+
+flippy.fancy img {
+  height: 100%;
+  width: 100%;
+}
+
+flippy.fancy flippy-front {
+  float: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 900;
+}
+
+flippy.fancy flippy-back {
+  float: none;
+  position: absolute;
+  z-index: 800;
+}
+
+.box {
+  width:100px;
+  height: 100px;
+  margin:5px;
+}
+
+/**
+ * The dnd-list should always have a min-height,
+ * otherwise you can't drop to it once it's empty
+ */
+.simpleDemo ul[dnd-list] {
+    min-height: 42px;
+    padding-left: 0px;
+}
+
+/**
+ * The dndDraggingSource class will be applied to
+ * the source element of a drag operation. It makes
+ * sense to hide it to give the user the feeling
+ * that he's actually moving it.
+ */
+.simpleDemo ul[dnd-list] .dndDraggingSource {
+    display: none;
+}
+
+/**
+ * An element with .dndPlaceholder class will be
+ * added to the dnd-list while the user is dragging
+ * over it.
+ */
+.simpleDemo ul[dnd-list] .dndPlaceholder {
+    background-color: #ddd;
+    display: block;
+    min-height: 42px;
+}
+
+.simpleDemo ul[dnd-list] li {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-top-right-radius: 4px;
+    border-top-left-radius: 4px;
+    display: block;
+    padding: 10px 15px;
+    margin-bottom: -1px;
+}
+
+/**
+ * Show selected elements in green
+ */
+.simpleDemo ul[dnd-list] li.selected {
+    background-color: #dff0d8;
+    color: #3c763d;
+}
+
+</style>
+</body>
+<script src="bower_components\angular\angular.min.js"></script>
+<script src="bower_components\angular-animate\angular-animate.min.js"></script>
+<script src="bower_components/angular-aria/angular-aria.min.js"></script>
+<script src="bower_components/angular-messages/angular-messages.min.js"></script>
+<script src="bower_components/angular-material/angular-material.min.js"></script>
+<script src="bower_components/angular-drag-and-drop-lists/angular-drag-and-drop-lists.min.js"></script>
+<script>
+         var app = angular.module('app', ['ngMaterial', 'dndLists']);
+
+         app.controller('ctrl', function($scope, $timeout, $mdSidenav, $http) {
+
+            $scope.persona = [
+              {
+                name: 'persona 1',
+                goals: ['donut_large', 'accessible']
+              },
+              {
+                name: 'persona 2',
+                goals: ['donut_large', 'backup']
+              },
+              {
+                name: 'persona 3',
+                goals: ['accessible']
+              },
+            ]
+
+            $scope.getOrderBy = function() {
+             return $scope.orderBy
+            }
+
+            $scope.models = {
+                selected: null,
+                fromList: [
+                  {label: "donut_large"},
+                  {label: "accessible"},
+                  {label: "assignment_ind"},
+                  {label: "backup"}
+                ],
+                toList: [
+                  {label: "donut_large"},
+                ]
+            };
+
+            $scope.placeHolder = function() {
+              var ph = []
+
+              for(i = $scope.models.toList.length + 1; i < 5; i++)
+                ph.push(i)
+              return ph;
+            }
+
+            $scope.isDropped = function(label) {
+              return ($scope.models.toList.findIndex(i => i.label === label) != -1)
+            }
+
+            $scope.inPersona = function(label) {
+
+              return ($scope.personaSelected.goals.findIndex(i => i === label) != -1)
+            }
+
+            // Model to JSON for demo purpose
+            $scope.$watch('models', function(model) {
+                $scope.modelAsJson = angular.toJson(model, true);
+            }, true);
+
+
+         });
+
+        app
+          .directive('flippy', function() {
+            return {
+              restrict: 'EA',
+              link: function($scope, $elem, $attrs) {
+
+                var options = {
+                  flipDuration: ($attrs.flipDuration) ? $attrs.flipDuration : 400,
+                  timingFunction: 'ease-in-out',
+                };
+
+                // setting flip options
+                angular.forEach(['flippy-front', 'flippy-back'], function(name) {
+                  var el = $elem.find(name);
+                  if (el.length == 1) {
+                    angular.forEach(['', '-ms-', '-webkit-'], function(prefix) {
+                      angular.element(el[0]).css(prefix + 'transition', 'all ' + options.flipDuration/1000 + 's ' + options.timingFunction);
+                    });
+                  }
+                });
+
+                /**
+                 * behaviour for flipping effect.
+                 */
+                $scope.flip = function() {
+                  $elem.toggleClass('flipped');
+                }
+
+              }
+            };
+          });
+
+      </script>
+
+</html>
