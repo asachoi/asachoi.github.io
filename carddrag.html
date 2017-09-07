@@ -244,9 +244,11 @@ flippy.fancy flippy-back {
             }
 
             $scope.inPersona = function(label) {
-              if(!$scope.personaSelected)
-                return false;
-              return ($scope.personaSelected.goals.findIndex(i => i === label) != -1)
+              if($scope.personaSelected) {
+                return ($scope.personaSelected.goals.findIndex(i => i === label) != -1)
+              }
+              return false;
+
             }
 
             // Model to JSON for demo purpose

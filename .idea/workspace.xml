@@ -17,8 +17,8 @@
       <file leaf-file-name="carddrag.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/carddrag.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="204">
-              <caret line="247" column="29" lean-forward="false" selection-start-line="247" selection-start-column="29" selection-end-line="247" selection-end-column="29" />
+            <state relative-caret-position="39">
+              <caret line="245" column="48" lean-forward="true" selection-start-line="245" selection-start-column="48" selection-end-line="245" selection-end-column="48" />
               <folding />
             </state>
           </provider>
@@ -139,8 +139,8 @@
     <treeState />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="870" />
-    <option name="y" value="200" />
+    <option name="x" value="371" />
+    <option name="y" value="525" />
     <option name="width" value="1382" />
     <option name="height" value="744" />
   </component>
@@ -482,7 +482,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="870" y="200" width="1382" height="744" extended-state="0" />
+    <frame x="371" y="525" width="1382" height="744" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -844,8 +844,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/carddrag.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="247" column="29" lean-forward="false" selection-start-line="247" selection-start-column="29" selection-end-line="247" selection-end-column="29" />
+        <state relative-caret-position="39">
+          <caret line="245" column="48" lean-forward="true" selection-start-line="245" selection-start-column="48" selection-end-line="245" selection-end-column="48" />
           <folding />
         </state>
       </provider>
