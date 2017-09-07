@@ -6,71 +6,75 @@
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
         rel="stylesheet">
   </link>
-
+  <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
 </head>
 <body ng-app="app" ng-controller="ctrl"  >
-
 
 <md-content layout="column">
   <div layout="row">
     <div
       ng-repeat="p in persona"
       class="box"
+      style="background-color:red"
     >
-      <div ng-click="$parent.personaSelected = p">
+      <div ng-click="$parent.personaSelected = p" >
         {{p.name}}
       </div>
     </div>
   </div>
   <div layout="row">
-      <div
-          ng-repeat="item in models.fromList"
-          dnd-list="models.fromList"
-          dnd-draggable="item"
-          dnd-effect-allowed="all"
-          dnd-selected="models.selected = item"
-          dnd-drop="false"
-          dnd-disable-if="isDropped(item.label)"
-
+    <div
+      ng-repeat="item in models.fromList"
+      dnd-list="models.fromList"
+      dnd-draggable="item"
+      dnd-effect-allowed="all"
+      dnd-selected="models.selected = item"
+      dnd-drop="false"
+      dnd-disable-if="isDropped(item.label)"
+    >
+      <flippy
+        class="fancy"
+        ng-click="flip()"
+        flip-duration="800"
+        timing-function="ease-in-out"
       >
-        <flippy
-          class="fancy"
-          ng-click="flip()"
-          flip-duration="800"
-          timing-function="ease-in-out"
-        >
-          <flippy-front>
-            <md-card
-              ng-class="{drop:isDropped(item.label), 'outline': inPersona(item.label)}"
-            >
-              <md-card-title>
-                <md-card-title-text>
-                  <span class="md-headline">{{item.label}}</span>
-                  <span class="md-subhead"><i class="material-icons">{{item.label}}</i></span>
-                </md-card-title-text>
-                <md-card-title-media>
-                  <div class="md-media-sm card-media"></div>
-                </md-card-title-media>
-              </md-card-title>
-              <md-card-actions layout="row" layout-align="end center">
-                <md-button>Action 1</md-button>
-                <md-button>Action 2</md-button>
-              </md-card-actions>
-            </md-card>
-          </flippy-front>
-          <flippy-back>
-            <img src="http://placehold.it/300&text=Aaaaaand the back" alt="the back" />
-          </flippy-back>
-
-        </flippy>
-      </div>
+        <flippy-front>
+          <md-card
+            ng-class="{drop:isDropped(item.label), 'outline': inPersona(item.label)}"
+          >
+            <md-card-title>
+              <md-card-title-text>
+                        <span class="md-headline">
+                           <h2>{{item.label}}</h2>
+                        </span>
+                <span class="md-subhead"><i class="material-icons">{{item.label}}</i></span>
+              </md-card-title-text>
+              <md-card-title-media>
+                <div class="md-media-sm card-media"></div>
+              </md-card-title-media>
+            </md-card-title>
+            <md-card-actions layout="row" layout-align="end center">
+              <md-button>Action 1</md-button>
+              <md-button>Action 2</md-button>
+            </md-card-actions>
+          </md-card>
+        </flippy-front>
+        <flippy-back>
+          <img src="http://placehold.it/300&text=Aaaaaand the back" alt="the back" />
+        </flippy-back>
+      </flippy>
     </div>
+  </div>
+  <br>
+
 
 
   <div layout="row" dnd-list="models.toList" style="background-color:green">
-    <div>
+    <div dnd-list="[]">
       Remove
     </div>
+
     <div ng-repeat="item in models.toList"
          dnd-draggable="item"
          dnd-moved="models.toList.splice($index, 1)"
@@ -79,9 +83,9 @@
          style="background-color:blue"
          class="box"
     >
-        <div>
-          <i class="material-icons">{{item.label}}</i>
-        </div>
+      <div>
+        <i class="material-icons">{{item.label}}</i>
+      </div>
     </div>
     <div ng-repeat="n in placeHolder() track by $index"
          style="background-color:yellow"
@@ -92,86 +96,66 @@
       </div>
     </div>
   </div>
-  </div>
-<br>
+
+  <br>
   {{models.fromList}}
   <br>
   {{models.toList}}
-
 </md-content>
 
-
 <style>
+body {
+  font-family:Roboto;
+}
+
+h2 {
+  font-family:Railway;
+}
+
+md-card {
+  width:240px;
+  height:240px;
+outline: none;
+}
 .drop {
   background-color: grey;
 }
 .outline {
   border-style: solid;
-
 }
 flippy {
   float: left;
-  -webkit-perspective: 600px;
-  -moz-perspective: 600px;
-  -ms-perspective: 600px;
   perspective: 600px;
+  outline: none;
 }
 flippy-front {
   position: absolute;
   z-index: 900;
-  width: inherit;
-  height: inherit;
-  -webkit-transform: rotate3d(0, 0, 0, 0deg);
-  -moz-transform: rotate3d(0, 0, 0, 0deg);
-  -ms-transform: rotate3d(0, 0, 0, 0deg);
   transform: rotate3d(0, 0, 0, 0deg);
-  -webkit-transform-style: preserve-3d;
-  -moz-transform-style: preserve-3d;
-  -ms-transform-style: preserve-3d;
   transform-style: preserve-3d;
-  -webkit-backface-visibility: hidden;
-  -moz-backface-visibility: hidden;
-  -ms-backface-visibility: hidden;
   backface-visibility: hidden;
+  outline: none;
 }
 flippy-back {
   position: absolute;
   z-index: 800;
-  width: inherit;
-  height: inherit;
-  -webkit-transform: rotate3d(0, 1, 0, -180deg);
-  -moz-transform: rotate3d(0, 1, 0, -180deg);
-  -ms-transform: rotate3d(0, 1, 0, -180deg);
   transform: rotate3d(0, 1, 0, -180deg);
-  -webkit-transform-style: preserve-3d;
-  -moz-transform-style: preserve-3d;
-  -ms-transform-style: preserve-3d;
   transform-style: preserve-3d;
-  -webkit-backface-visibility: hidden;
-  -moz-backface-visibility: hidden;
-  -ms-backface-visibility: hidden;
   backface-visibility: hidden;
+  outline: none;
 }
 flippy.flipped flippy-front {
   z-index: 900;
-  -webkit-transform: rotate3d(0, 1, 0, 180deg);
-  -moz-transform: rotate3d(0, 1, 0, 180deg);
-  -ms-transform: rotate3d(0, 1, 0, 180deg);
   transform: rotate3d(0, 1, 0, 180deg);
 }
 flippy.flipped flippy-back {
   z-index: 1000;
-  -webkit-transform: rotate3d(0, 0, 0, 0deg);
-  -moz-transform: rotate3d(0, 0, 0, 0deg);
-  -ms-transform: rotate3d(0, 0, 0, 0deg);
   transform: rotate3d(0, 0, 0, 0deg);
 }
 
 flippy.fancy {
   float: left;
-
   position: relative;
-
   width: 250px;
   height: 250px;
 }
@@ -201,53 +185,6 @@ flippy.fancy flippy-back {
   margin:5px;
 }
 
-/**
- * The dnd-list should always have a min-height,
- * otherwise you can't drop to it once it's empty
- */
-.simpleDemo ul[dnd-list] {
-    min-height: 42px;
-    padding-left: 0px;
-}
-
-/**
- * The dndDraggingSource class will be applied to
- * the source element of a drag operation. It makes
- * sense to hide it to give the user the feeling
- * that he's actually moving it.
- */
-.simpleDemo ul[dnd-list] .dndDraggingSource {
-    display: none;
-}
-
-/**
- * An element with .dndPlaceholder class will be
- * added to the dnd-list while the user is dragging
- * over it.
- */
-.simpleDemo ul[dnd-list] .dndPlaceholder {
-    background-color: #ddd;
-    display: block;
-    min-height: 42px;
-}
-
-.simpleDemo ul[dnd-list] li {
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-top-right-radius: 4px;
-    border-top-left-radius: 4px;
-    display: block;
-    padding: 10px 15px;
-    margin-bottom: -1px;
-}
-
-/**
- * Show selected elements in green
- */
-.simpleDemo ul[dnd-list] li.selected {
-    background-color: #dff0d8;
-    color: #3c763d;
-}
 
 </style>
 </body>
